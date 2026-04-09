@@ -49,7 +49,10 @@ const CATALOG = [
     name: "Болгарка (УШМ) Makita GA 9020 SF",
     category: "grinder", price: "900", unit: "сутки", badge: "Хит", icon: "Zap",
     specs: ["2200 Вт", "Диск 230 мм", "Плавный пуск", "Вес 5.8 кг"],
-    images: [] as string[],
+    images: [
+      "https://cdn.poehali.dev/projects/a75d3d4b-fdc5-4860-b617-00ca6b3feb56/bucket/8e6c4205-137b-483b-9433-954a3be29642.jpg",
+      "https://cdn.poehali.dev/projects/a75d3d4b-fdc5-4860-b617-00ca6b3feb56/bucket/5f2ad98a-2437-4f1a-a8e3-c6fbb51a0a6d.jpg",
+    ],
   },
   {
     id: 4, art: "DRL-001",
