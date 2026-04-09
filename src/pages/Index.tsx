@@ -83,7 +83,7 @@ const CATALOG = [
     name: "Бетонорез электрический Concrete SAW 400",
     category: "concrete", price: "2 000", unit: "сутки", badge: null, icon: "Scissors",
     specs: ["5500 Вт", "Диск 400 мм", "Рез 150 мм", "4700 об/мин"],
-    images: [] as string[],
+    images: ["https://cdn.poehali.dev/projects/a75d3d4b-fdc5-4860-b617-00ca6b3feb56/bucket/d9f9cbcc-9281-4229-8c27-4d1fc2fc9da3.png"],
   },
   {
     id: 7, art: "CUT-002",
