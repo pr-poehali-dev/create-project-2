@@ -7,7 +7,7 @@ type CatalogItem = {
   specs: string[]; images: string[];
 };
 
-const HERO_IMG = "https://cdn.poehali.dev/projects/a75d3d4b-fdc5-4860-b617-00ca6b3feb56/files/b3761365-7514-4863-8b20-7277e91b60a5.jpg";
+const HERO_IMG = "https://cdn.poehali.dev/projects/a75d3d4b-fdc5-4860-b617-00ca6b3feb56/files/8217c8c0-388f-4c77-86e5-3b96d1623d82.jpg";
 
 const NAV_LINKS = [
   { id: "home", label: "Главная" },
