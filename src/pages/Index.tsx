@@ -104,7 +104,7 @@ const CATALOG = [
     name: "Вибронога ручная бензиновая TR72 4.8кВт 80кг",
     category: "compaction", price: "2 500", unit: "сутки", badge: null, icon: "ArrowDown",
     specs: ["80 кг", "4-такт. бензиновый 7.5 л.с.", "Глубина уплотнения 35 см", "Центробеж. сила 10 кН", "Плита 34.5×28.5 см"],
-    images: [] as string[],
+    images: ["https://cdn.poehali.dev/projects/a75d3d4b-fdc5-4860-b617-00ca6b3feb56/bucket/4609e806-66cb-4239-90c7-a421038a94cd.jpg"],
   },
   {
     id: 11, art: "CMP-002",
