@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Icon from "@/components/ui/icon";
 
-const HERO_IMG = "https://cdn.poehali.dev/projects/a75d3d4b-fdc5-4860-b617-00ca6b3feb56/files/784082f1-1e57-48a2-a3c3-0f6eb6136f0c.jpg";
+const HERO_IMG = "https://cdn.poehali.dev/projects/a75d3d4b-fdc5-4860-b617-00ca6b3feb56/files/8217c8c0-388f-4c77-86e5-3b96d1623d82.jpg";
 
 const NAV_LINKS = [
   { id: "home", label: "Главная" },
@@ -14,49 +14,108 @@ const NAV_LINKS = [
 
 const CATEGORIES = [
   { id: "all", label: "Все" },
-  { id: "excavation", label: "Земляные работы" },
+  { id: "grinder", label: "Болгарки (УШМ)" },
+  { id: "drilling", label: "Алмазное бурение" },
   { id: "concrete", label: "Бетонные работы" },
-  { id: "lifting", label: "Подъёмное" },
-  { id: "tools", label: "Инструмент" },
-  { id: "scaffolding", label: "Леса и опалубка" },
+  { id: "compaction", label: "Уплотнение грунта" },
 ];
 
 const CATALOG = [
-  { id: 1, art: "EXC-001", name: "Мини-экскаватор Komatsu PC35", category: "excavation", price: "4 500", unit: "сутки", badge: "Хит", icon: "Tractor" },
-  { id: 2, art: "EXC-002", name: "Экскаватор-погрузчик JCB 3CX", category: "excavation", price: "8 200", unit: "сутки", badge: null, icon: "Tractor" },
-  { id: 3, art: "CON-001", name: "Бетономешалка 300л", category: "concrete", price: "950", unit: "сутки", badge: null, icon: "RefreshCw" },
-  { id: 4, art: "CON-002", name: "Глубинный вибратор ИВ-116", category: "concrete", price: "450", unit: "сутки", badge: null, icon: "Zap" },
-  { id: 5, art: "CON-003", name: "Бетонный насос Putzmeister", category: "concrete", price: "12 000", unit: "сутки", badge: "Новинка", icon: "Zap" },
-  { id: 6, art: "LIF-001", name: "Автовышка 22м", category: "lifting", price: "6 800", unit: "сутки", badge: null, icon: "ArrowUp" },
-  { id: 7, art: "LIF-002", name: "Телескопический погрузчик 6т", category: "lifting", price: "9 500", unit: "сутки", badge: null, icon: "ArrowUp" },
-  { id: 8, art: "TOL-001", name: "Перфоратор Bosch GBH 8-45", category: "tools", price: "350", unit: "сутки", badge: null, icon: "Wrench" },
-  { id: 9, art: "TOL-002", name: "Угловая шлифмашина 230мм", category: "tools", price: "280", unit: "сутки", badge: null, icon: "Wrench" },
-  { id: 10, art: "TOL-003", name: "Лазерный нивелир Leica", category: "tools", price: "600", unit: "сутки", badge: "Хит", icon: "Crosshair" },
-  { id: 11, art: "SCA-001", name: "Строительные леса (секция 2м)", category: "scaffolding", price: "180", unit: "сутки", badge: null, icon: "Grid3x3" },
-  { id: 12, art: "SCA-002", name: "Опалубка перекрытий (м²)", category: "scaffolding", price: "120", unit: "м²/сутки", badge: null, icon: "Grid3x3" },
+  {
+    id: 1, art: "USM-001",
+    name: "Аккумуляторная болгарка (УШМ) TOUA DBLAG125-1",
+    category: "grinder", price: "800", unit: "сутки", badge: null, icon: "Zap",
+    specs: ["Диск 125 мм", "Акк. 4 А·ч / 18 В", "Вес 2.05 кг", "Рег. оборотов"],
+  },
+  {
+    id: 2, art: "USM-002",
+    name: "Болгарка (УШМ) KEYANG DG-1102C",
+    category: "grinder", price: "700", unit: "сутки", badge: null, icon: "Zap",
+    specs: ["1100 Вт", "Диск 125 мм", "Плавный пуск", "Вес 1.6 кг"],
+  },
+  {
+    id: 3, art: "USM-003",
+    name: "Болгарка (УШМ) Makita GA 9020 SF",
+    category: "grinder", price: "900", unit: "сутки", badge: "Хит", icon: "Zap",
+    specs: ["2200 Вт", "Диск 230 мм", "Плавный пуск", "Вес 5.8 кг"],
+  },
+  {
+    id: 4, art: "DRL-001",
+    name: "Установка алмазного бурения AT-S + бак SU-180M",
+    category: "drilling", price: "1 800", unit: "сутки", badge: null, icon: "Drill",
+    specs: ["2200 Вт", "Ø до 180 мм", "Мокрое/сухое", "Вес 10.7 кг"],
+  },
+  {
+    id: 5, art: "DRL-002",
+    name: "Установка Алмазная Diam 400",
+    category: "drilling", price: "2 500", unit: "сутки", badge: "Новинка", icon: "Drill",
+    specs: ["6000 Вт", "Ø коронки до 400 мм", "Изм. угол наклона"],
+  },
+  {
+    id: 6, art: "CUT-001",
+    name: "Бетонорез электрический Concrete SAW 400",
+    category: "concrete", price: "2 000", unit: "сутки", badge: null, icon: "Scissors",
+    specs: ["5500 Вт", "Диск 400 мм", "Рез 150 мм", "4700 об/мин"],
+  },
+  {
+    id: 7, art: "CUT-002",
+    name: "Бетонорез кольцевой BHJ500 электрический",
+    category: "concrete", price: "2 500", unit: "сутки", badge: null, icon: "Scissors",
+    specs: ["Ø 520 мм", "Глубина реза 40 см", "Железобетон/мрамор"],
+  },
+  {
+    id: 8, art: "CON-001",
+    name: "Машина затирочная (вертолёт) TSS DMR1000L",
+    category: "concrete", price: "2 500", unit: "сутки", badge: null, icon: "RefreshCw",
+    specs: ["Loncin G200F 6.5 л.с.", "Ширина 900 мм", "Бензиновый"],
+  },
+  {
+    id: 9, art: "CON-002",
+    name: "Бетономешалка Electrolite БМ-165 E",
+    category: "concrete", price: "1 000", unit: "сутки", badge: null, icon: "RefreshCw",
+    specs: ["800 Вт", "165 л / 123 л раствора", "Чугунный венец", "Вес 52 кг"],
+  },
+  {
+    id: 10, art: "CMP-001",
+    name: "Вибронога (трамбовка)",
+    category: "compaction", price: "2 500", unit: "сутки", badge: null, icon: "ArrowDown",
+    specs: ["Уплотнение грунта", "Аренда с оператором"],
+  },
+  {
+    id: 11, art: "CMP-002",
+    name: "Виброплита 90 кг",
+    category: "compaction", price: "1 800", unit: "сутки", badge: null, icon: "ArrowDown",
+    specs: ["90 кг", "Плиточное основание", "Грунт/щебень"],
+  },
+  {
+    id: 12, art: "CMP-003",
+    name: "Виброплита TOR-C 120",
+    category: "compaction", price: "по запросу", unit: "сутки", badge: "Новинка", icon: "ArrowDown",
+    specs: ["120 кг", "Повышенная производительность"],
+  },
 ];
 
 const REVIEWS = [
-  { name: "Алексей Соколов", company: "СтройМонтаж", text: "Брали экскаватор на две недели. Техника в отличном состоянии, доставили точно в срок. Будем обращаться снова!", rating: 5 },
-  { name: "Марина Ковалёва", company: "ЖилСтрой", text: "Оперативно оформили аренду бетонного насоса. Цены честные, менеджер помог с выбором. Рекомендую!", rating: 5 },
-  { name: "Дмитрий Петров", company: "ИП Петров", text: "Брал несколько видов инструмента. Всё работает исправно. Единственное — хотелось бы почаще обновлять парк.", rating: 4 },
-  { name: "Ольга Назарова", company: "РемСервис", text: "Отличный сервис! Леса и опалубка были в наличии, оформление за 30 минут. Спасибо за профессионализм.", rating: 5 },
+  { name: "Андрей Климов", company: "ООО СтройПроект", text: "Брали вертолёт для затирки бетона на объекте 2000 м². Техника в отличном состоянии, доставили строго по времени. Сэкономили кучу денег по сравнению с покупкой!", rating: 5 },
+  { name: "Светлана Иванова", company: "ИП Иванова", text: "Арендовали установку алмазного бурения. Всё работало идеально. Менеджер подробно проконсультировал по выбору коронки. Рекомендую РентМастер!", rating: 5 },
+  { name: "Олег Петренко", company: "Частный мастер", text: "Брал болгарку Makita на неделю — цена отличная, инструмент как новый. Оформление за 10 минут. Обязательно вернусь.", rating: 5 },
+  { name: "Виктор Нагорный", company: "БетонСтрой", text: "Пользуемся услугами РентМастер регулярно. Всегда большой выбор, гибкие условия при долгосрочной аренде. Надёжная компания!", rating: 5 },
 ];
 
 const CONDITIONS = [
   { icon: "FileText", title: "Договор аренды", text: "Оформляем официальный договор. Юридические лица и ИП работают по безналу, физические лица — наличными или картой." },
   { icon: "Shield", title: "Залог", text: "Залог составляет 50–100% от стоимости оборудования. Возвращается в полном объёме при сдаче техники в надлежащем состоянии." },
-  { icon: "Clock", title: "Срок аренды", text: "Минимальный срок аренды — 1 сутки. Долгосрочная аренда (от 7 дней) — скидка 10%, от 30 дней — скидка 20%." },
+  { icon: "Clock", title: "Срок аренды", text: "Минимальный срок — 1 сутки. От 7 дней — скидка 10%, от 30 дней — скидка 20%. Долгосрочные условия обсуждаются индивидуально." },
   { icon: "AlertCircle", title: "Ответственность", text: "Арендатор несёт ответственность за сохранность оборудования. При повреждении — возмещение по рыночной стоимости ремонта." },
-  { icon: "CheckCircle", title: "Документы", text: "Для физлиц: паспорт + водительское удостоверение. Для юрлиц и ИП: реквизиты компании + доверенность." },
-  { icon: "RefreshCw", title: "Возврат", text: "Возврат оборудования осуществляется на наш склад или силами нашей службы доставки (платно). Приёмка техники при вас." },
+  { icon: "CheckCircle", title: "Документы", text: "Для физлиц: паспорт. Для юрлиц и ИП: реквизиты + доверенность. Ничего лишнего — оформляем быстро." },
+  { icon: "RefreshCw", title: "Возврат", text: "Возврат на наш склад или заберём сами (платно). Совместная приёмка техники на месте при вас." },
 ];
 
 const DELIVERY_ZONES = [
-  { zone: "Зона 1", distance: "до 20 км", price: "1 500 ₽" },
-  { zone: "Зона 2", distance: "20–50 км", price: "3 000 ₽" },
-  { zone: "Зона 3", distance: "50–100 км", price: "5 500 ₽" },
-  { zone: "Зона 4", distance: "100–200 км", price: "По договору" },
+  { zone: "Зона 1", distance: "до 10 км", price: "500 ₽" },
+  { zone: "Зона 2", distance: "10–30 км", price: "1 200 ₽" },
+  { zone: "Зона 3", distance: "30–60 км", price: "2 500 ₽" },
+  { zone: "Зона 4", distance: "60+ км", price: "По договору" },
 ];
 
 const Index = () => {
@@ -64,6 +123,7 @@ const Index = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [activeCategory, setActiveCategory] = useState("all");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [expandedCard, setExpandedCard] = useState<number | null>(null);
 
   const scrollTo = (id: string) => {
     setActiveSection(id);
@@ -75,33 +135,44 @@ const Index = () => {
   const filteredCatalog = CATALOG.filter((item) => {
     const matchCategory = activeCategory === "all" || item.category === activeCategory;
     const q = searchQuery.toLowerCase();
-    const matchSearch = !q || item.name.toLowerCase().includes(q) || item.art.toLowerCase().includes(q);
+    const matchSearch =
+      !q ||
+      item.name.toLowerCase().includes(q) ||
+      item.art.toLowerCase().includes(q);
     return matchCategory && matchSearch;
   });
 
   return (
     <div className="min-h-screen bg-[#F0F0F0] font-golos">
       {/* HEADER */}
-      <header className="fixed top-0 left-0 right-0 z-50 bg-[#2C2E33] shadow-lg">
+      <header className="fixed top-0 left-0 right-0 z-50 bg-[#1A1C20] shadow-xl">
         <div className="max-w-7xl mx-auto px-4 flex items-center justify-between h-16">
-          <div className="flex items-center gap-3 cursor-pointer" onClick={() => scrollTo("home")}>
-            <div className="w-8 h-8 bg-[#8B1A2F] rounded flex items-center justify-center">
-              <Icon name="Hammer" size={18} className="text-white" />
+          {/* Logo */}
+          <div
+            className="flex items-center gap-3 cursor-pointer select-none"
+            onClick={() => scrollTo("home")}
+          >
+            <div className="w-9 h-9 bg-[#8B1A2F] rounded-lg flex items-center justify-center shadow-lg">
+              <Icon name="Wrench" size={19} className="text-white" />
             </div>
-            <span className="font-oswald text-white text-xl tracking-wide font-semibold">
-              СТРОЙ<span className="text-[#d14060]">ПРОКАТ</span>
-            </span>
+            <div className="leading-tight">
+              <span className="font-oswald text-white text-xl tracking-widest font-bold">
+                РЕНТ<span className="text-[#D14060]">МАСТЕР</span>
+              </span>
+              <div className="text-[10px] text-gray-400 tracking-wider -mt-0.5">АРЕНДА ИНСТРУМЕНТА</div>
+            </div>
           </div>
 
-          <nav className="hidden md:flex items-center gap-1">
+          {/* Nav */}
+          <nav className="hidden lg:flex items-center gap-0.5">
             {NAV_LINKS.map((link) => (
               <button
                 key={link.id}
                 onClick={() => scrollTo(link.id)}
-                className={`px-3 py-2 text-sm rounded transition-colors ${
+                className={`px-3 py-2 text-sm rounded transition-all ${
                   activeSection === link.id
-                    ? "text-[#d14060] bg-white/10"
-                    : "text-gray-300 hover:text-white hover:bg-white/10"
+                    ? "text-[#D14060] bg-white/8 font-medium"
+                    : "text-gray-400 hover:text-white hover:bg-white/5"
                 }`}
               >
                 {link.label}
@@ -109,80 +180,112 @@ const Index = () => {
             ))}
           </nav>
 
-          <div className="hidden md:flex items-center gap-3">
-            <a href="tel:+78001234567" className="flex items-center gap-2 text-white hover:text-[#d14060] transition-colors">
-              <Icon name="Phone" size={16} />
-              <span className="font-oswald text-base tracking-wide">8 800 123-45-67</span>
-            </a>
-          </div>
+          {/* Phone */}
+          <a
+            href="tel:+79991377779"
+            className="hidden md:flex items-center gap-2 bg-[#8B1A2F] hover:bg-[#6e1525] text-white px-4 py-2 rounded-lg transition-all"
+          >
+            <Icon name="Phone" size={15} />
+            <span className="font-oswald tracking-wider text-sm">8 999 137-77-79</span>
+          </a>
 
-          <button className="md:hidden text-white p-2" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
+          <button
+            className="lg:hidden text-white p-2"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          >
             <Icon name={mobileMenuOpen ? "X" : "Menu"} size={24} />
           </button>
         </div>
 
         {mobileMenuOpen && (
-          <div className="md:hidden bg-[#232529] border-t border-white/10 px-4 py-3 flex flex-col gap-1">
+          <div className="lg:hidden bg-[#13151A] border-t border-white/10 px-4 py-3 flex flex-col gap-1">
             {NAV_LINKS.map((link) => (
               <button
                 key={link.id}
                 onClick={() => scrollTo(link.id)}
-                className="text-left px-3 py-2 text-gray-200 hover:text-white hover:bg-white/10 rounded text-sm"
+                className="text-left px-3 py-2.5 text-gray-300 hover:text-white hover:bg-white/5 rounded text-sm"
               >
                 {link.label}
               </button>
             ))}
-            <a href="tel:+78001234567" className="px-3 py-2 text-[#d14060] font-oswald">8 800 123-45-67</a>
+            <a
+              href="tel:+79991377779"
+              className="flex items-center gap-2 px-3 py-2.5 text-[#D14060] font-oswald tracking-wider"
+            >
+              <Icon name="Phone" size={15} />
+              8 999 137-77-79
+            </a>
           </div>
         )}
       </header>
 
       {/* HERO */}
-      <section id="home" className="relative pt-16 min-h-[90vh] flex items-center overflow-hidden">
-        <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url(${HERO_IMG})` }} />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#2C2E33]/96 via-[#2C2E33]/78 to-transparent" />
-        <div className="relative max-w-7xl mx-auto px-4 py-20 pb-28">
-          <div className="max-w-2xl">
-            <div className="inline-flex items-center gap-2 bg-[#8B1A2F]/20 border border-[#8B1A2F]/40 rounded-full px-4 py-1.5 mb-6">
-              <div className="w-2 h-2 rounded-full bg-[#d14060] animate-pulse" />
-              <span className="text-[#e07090] text-sm">Более 200 единиц техники в наличии</span>
+      <section id="home" className="relative pt-16 min-h-screen flex items-center overflow-hidden">
+        <div
+          className="absolute inset-0 bg-cover bg-center scale-105"
+          style={{ backgroundImage: `url(${HERO_IMG})` }}
+        />
+        {/* Gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0D0F13]/97 via-[#0D0F13]/80 to-[#0D0F13]/40" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0D0F13]/60 via-transparent to-transparent" />
+
+        <div className="relative max-w-7xl mx-auto px-4 py-24 pb-32">
+          <div className="max-w-3xl">
+            {/* Badge */}
+            <div className="inline-flex items-center gap-2 bg-[#8B1A2F]/25 border border-[#8B1A2F]/50 rounded-full px-5 py-2 mb-8">
+              <div className="w-2 h-2 rounded-full bg-[#D14060] animate-pulse" />
+              <span className="text-[#F08090] text-sm tracking-wide">
+                Надёжный партнёр в сфере аренды
+              </span>
             </div>
-            <h1 className="font-oswald text-5xl md:text-7xl text-white leading-tight mb-6 tracking-wide">
-              АРЕНДА<br />
-              <span className="text-[#d14060]">СТРОИТЕЛЬНОЙ</span><br />
-              ТЕХНИКИ
+
+            {/* Headline */}
+            <h1 className="font-oswald text-5xl md:text-6xl lg:text-7xl text-white leading-[1.05] mb-6 tracking-wide">
+              КОМПАНИЯ<br />
+              <span className="text-[#D14060]">РЕНТМАСТЕР</span>
             </h1>
-            <p className="text-gray-300 text-lg mb-8 leading-relaxed max-w-lg">
-              Профессиональное оборудование для любых строительных задач. Доставка, страховка, техподдержка.
+
+            {/* Subtext */}
+            <p className="text-gray-300 text-lg md:text-xl leading-relaxed mb-3 max-w-2xl">
+              Надёжный партнёр в сфере аренды строительного оборудования и инструмента.
             </p>
+            <p className="text-gray-400 text-base leading-relaxed mb-3 max-w-xl">
+              Широкий выбор инструмента для всех видов работ — от строительства до садоводства.
+            </p>
+            <p className="text-[#F0B040] font-oswald text-xl tracking-wide mb-10">
+              ☝ Не спешите покупать — арендуйте у нас!
+            </p>
+
             <div className="flex flex-col sm:flex-row gap-3">
               <button
                 onClick={() => scrollTo("catalog")}
-                className="bg-[#8B1A2F] hover:bg-[#6e1525] text-white font-oswald tracking-wider px-8 py-4 rounded text-lg transition-all hover:shadow-lg hover:-translate-y-0.5"
+                className="bg-[#8B1A2F] hover:bg-[#6e1525] text-white font-oswald tracking-widest px-10 py-4 rounded-lg text-lg transition-all hover:shadow-xl hover:shadow-[#8B1A2F]/30 hover:-translate-y-0.5"
               >
                 СМОТРЕТЬ КАТАЛОГ
               </button>
-              <button
-                onClick={() => scrollTo("contacts")}
-                className="border border-white/30 text-white hover:bg-white/10 font-oswald tracking-wider px-8 py-4 rounded text-lg transition-all"
+              <a
+                href="tel:+79991377779"
+                className="flex items-center justify-center gap-2 border border-white/25 text-white hover:bg-white/10 font-oswald tracking-wider px-8 py-4 rounded-lg text-lg transition-all"
               >
-                СВЯЗАТЬСЯ С НАМИ
-              </button>
+                <Icon name="Phone" size={18} />
+                ПОЗВОНИТЬ
+              </a>
             </div>
           </div>
         </div>
 
-        <div className="absolute bottom-0 left-0 right-0 bg-[#8B1A2F]/90 backdrop-blur-sm">
+        {/* Stats bar */}
+        <div className="absolute bottom-0 left-0 right-0 bg-[#8B1A2F]/95 backdrop-blur-sm border-t border-white/10">
           <div className="max-w-7xl mx-auto px-4 py-4 grid grid-cols-2 md:grid-cols-4 gap-4">
             {[
-              { value: "200+", label: "единиц техники" },
-              { value: "10 лет", label: "на рынке" },
-              { value: "1 500+", label: "довольных клиентов" },
+              { value: "12+", label: "видов оборудования" },
+              { value: "7 лет", label: "на рынке" },
               { value: "24/7", label: "поддержка" },
-            ].map((stat) => (
-              <div key={stat.label} className="text-center">
-                <div className="font-oswald text-2xl text-white font-bold">{stat.value}</div>
-                <div className="text-white/70 text-xs mt-0.5">{stat.label}</div>
+              { value: "1 сутки", label: "мин. срок аренды" },
+            ].map((s) => (
+              <div key={s.label} className="text-center">
+                <div className="font-oswald text-2xl text-white font-bold">{s.value}</div>
+                <div className="text-white/65 text-xs mt-0.5">{s.label}</div>
               </div>
             ))}
           </div>
@@ -190,41 +293,46 @@ const Index = () => {
       </section>
 
       {/* CATALOG */}
-      <section id="catalog" className="py-20 bg-[#EBEBEB]">
+      <section id="catalog" className="py-20 bg-[#EAEAEA]">
         <div className="max-w-7xl mx-auto px-4">
           <div className="mb-10">
             <div className="flex items-center gap-3 mb-2">
-              <div className="w-1 h-8 bg-[#8B1A2F] rounded-full" />
-              <h2 className="font-oswald text-4xl text-[#2C2E33] tracking-wide">КАТАЛОГ ОБОРУДОВАНИЯ</h2>
+              <div className="w-1 h-9 bg-[#8B1A2F] rounded-full" />
+              <h2 className="font-oswald text-4xl text-[#1A1C20] tracking-wide">КАТАЛОГ ОБОРУДОВАНИЯ</h2>
             </div>
-            <p className="text-gray-500 ml-4">Найдите нужную технику по названию или артикулу</p>
+            <p className="text-gray-500 ml-4 text-sm">Поиск по названию, артикулу или характеристике</p>
           </div>
 
-          <div className="relative mb-6">
+          {/* Search */}
+          <div className="relative mb-5">
             <Icon name="Search" size={20} className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" />
             <input
               type="text"
-              placeholder="Поиск по названию или артикулу (например: EXC-001)"
+              placeholder="Например: болгарка, бурение, USM-001..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-12 pr-4 py-4 bg-white border border-gray-200 rounded-lg text-[#2C2E33] placeholder-gray-400 focus:outline-none focus:border-[#8B1A2F] focus:ring-2 focus:ring-[#8B1A2F]/20 text-base shadow-sm transition-all"
+              className="w-full pl-12 pr-10 py-4 bg-white border border-gray-200 rounded-xl text-[#1A1C20] placeholder-gray-400 focus:outline-none focus:border-[#8B1A2F] focus:ring-2 focus:ring-[#8B1A2F]/15 shadow-sm text-base transition-all"
             />
             {searchQuery && (
-              <button onClick={() => setSearchQuery("")} className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600">
+              <button
+                onClick={() => setSearchQuery("")}
+                className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-700"
+              >
                 <Icon name="X" size={18} />
               </button>
             )}
           </div>
 
+          {/* Filters */}
           <div className="flex flex-wrap gap-2 mb-8">
             {CATEGORIES.map((cat) => (
               <button
                 key={cat.id}
                 onClick={() => setActiveCategory(cat.id)}
-                className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
+                className={`px-4 py-2 rounded-full text-sm font-medium transition-all border ${
                   activeCategory === cat.id
-                    ? "bg-[#8B1A2F] text-white shadow-md"
-                    : "bg-white text-gray-600 hover:bg-red-50 hover:text-[#8B1A2F] border border-gray-200"
+                    ? "bg-[#8B1A2F] text-white border-[#8B1A2F] shadow"
+                    : "bg-white text-gray-600 border-gray-200 hover:border-[#8B1A2F]/40 hover:text-[#8B1A2F]"
                 }`}
               >
                 {cat.label}
@@ -233,8 +341,10 @@ const Index = () => {
           </div>
 
           {searchQuery && (
-            <p className="text-sm text-gray-500 mb-4">
-              Найдено: <span className="font-semibold text-[#2C2E33]">{filteredCatalog.length}</span> позиций
+            <p className="text-sm text-gray-400 mb-5">
+              Найдено:{" "}
+              <span className="font-semibold text-[#1A1C20]">{filteredCatalog.length}</span>{" "}
+              позиций
             </p>
           )}
 
@@ -243,25 +353,76 @@ const Index = () => {
               {filteredCatalog.map((item) => (
                 <div
                   key={item.id}
-                  className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md border border-gray-100 transition-all hover:-translate-y-1 group"
+                  className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-lg border border-gray-100 transition-all hover:-translate-y-1 group flex flex-col"
                 >
-                  <div className="h-40 bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center relative">
-                    <Icon name={item.icon as string} size={48} className="text-gray-400 group-hover:text-[#8B1A2F] transition-colors" fallback="Wrench" />
+                  {/* Card image zone */}
+                  <div className="h-36 bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center relative">
+                    <Icon
+                      name={item.icon as string}
+                      size={52}
+                      className="text-gray-300 group-hover:text-[#8B1A2F] transition-colors duration-300"
+                      fallback="Wrench"
+                    />
                     {item.badge && (
-                      <span className="absolute top-3 right-3 bg-[#8B1A2F] text-white text-xs font-oswald px-2 py-1 rounded tracking-wider">
+                      <span className="absolute top-3 right-3 bg-[#8B1A2F] text-white text-[11px] font-oswald px-2.5 py-1 rounded-full tracking-wider shadow">
                         {item.badge}
                       </span>
                     )}
+                    <span className="absolute bottom-2 left-3 text-[10px] text-gray-400 font-mono bg-white/80 px-2 py-0.5 rounded">
+                      {item.art}
+                    </span>
                   </div>
-                  <div className="p-4">
-                    <div className="text-xs text-gray-400 font-mono mb-1">{item.art}</div>
-                    <h3 className="font-semibold text-[#2C2E33] text-sm leading-tight mb-3">{item.name}</h3>
-                    <div className="flex items-end justify-between">
+
+                  <div className="p-4 flex flex-col flex-1">
+                    <h3 className="font-semibold text-[#1A1C20] text-sm leading-snug mb-3 flex-1">
+                      {item.name}
+                    </h3>
+
+                    {/* Specs toggle */}
+                    <button
+                      onClick={() =>
+                        setExpandedCard(expandedCard === item.id ? null : item.id)
+                      }
+                      className="flex items-center gap-1 text-xs text-gray-400 hover:text-[#8B1A2F] transition-colors mb-3 w-fit"
+                    >
+                      <Icon
+                        name={expandedCard === item.id ? "ChevronUp" : "ChevronDown"}
+                        size={13}
+                      />
+                      {expandedCard === item.id ? "Скрыть" : "Характеристики"}
+                    </button>
+
+                    {expandedCard === item.id && (
+                      <ul className="mb-3 space-y-1">
+                        {item.specs.map((s) => (
+                          <li
+                            key={s}
+                            className="flex items-start gap-1.5 text-xs text-gray-500"
+                          >
+                            <span className="text-[#8B1A2F] mt-0.5">•</span>
+                            {s}
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+
+                    <div className="flex items-center justify-between mt-auto pt-2 border-t border-gray-100">
                       <div>
-                        <span className="font-oswald text-xl text-[#8B1A2F]">{item.price} ₽</span>
-                        <span className="text-xs text-gray-400 ml-1">/ {item.unit}</span>
+                        {item.price === "по запросу" ? (
+                          <span className="font-oswald text-base text-[#8B1A2F]">По запросу</span>
+                        ) : (
+                          <>
+                            <span className="font-oswald text-xl text-[#8B1A2F]">
+                              {item.price} ₽
+                            </span>
+                            <span className="text-[11px] text-gray-400 ml-1">/ {item.unit}</span>
+                          </>
+                        )}
                       </div>
-                      <button className="bg-[#8B1A2F] hover:bg-[#6e1525] text-white text-xs px-3 py-1.5 rounded transition-colors">
+                      <button
+                        onClick={() => scrollTo("contacts")}
+                        className="bg-[#8B1A2F] hover:bg-[#6e1525] text-white text-xs px-3 py-1.5 rounded-lg transition-colors"
+                      >
                         Заказать
                       </button>
                     </div>
@@ -270,10 +431,18 @@ const Index = () => {
               ))}
             </div>
           ) : (
-            <div className="text-center py-16 text-gray-400">
-              <Icon name="SearchX" size={48} className="mx-auto mb-3 opacity-40" fallback="Search" />
-              <p className="text-lg">По запросу «{searchQuery}» ничего не найдено</p>
-              <button onClick={() => setSearchQuery("")} className="mt-3 text-[#8B1A2F] hover:underline text-sm">
+            <div className="text-center py-20 text-gray-400">
+              <Icon
+                name="SearchX"
+                size={52}
+                className="mx-auto mb-4 opacity-30"
+                fallback="Search"
+              />
+              <p className="text-lg text-gray-500">По запросу «{searchQuery}» ничего не найдено</p>
+              <button
+                onClick={() => setSearchQuery("")}
+                className="mt-4 text-[#8B1A2F] hover:underline text-sm"
+              >
                 Сбросить поиск
               </button>
             </div>
@@ -285,86 +454,106 @@ const Index = () => {
       <section id="conditions" className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex items-center gap-3 mb-10">
-            <div className="w-1 h-8 bg-[#8B1A2F] rounded-full" />
-            <h2 className="font-oswald text-4xl text-[#2C2E33] tracking-wide">УСЛОВИЯ АРЕНДЫ</h2>
+            <div className="w-1 h-9 bg-[#8B1A2F] rounded-full" />
+            <h2 className="font-oswald text-4xl text-[#1A1C20] tracking-wide">УСЛОВИЯ АРЕНДЫ</h2>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
             {CONDITIONS.map((item) => (
-              <div key={item.title} className="p-6 rounded-xl bg-[#F5F5F5] border border-gray-100 hover:border-red-200 transition-all group">
-                <div className="w-12 h-12 bg-[#8B1A2F]/10 rounded-lg flex items-center justify-center mb-4 group-hover:bg-[#8B1A2F] transition-colors">
-                  <Icon name={item.icon as string} size={22} className="text-[#8B1A2F] group-hover:text-white transition-colors" fallback="Info" />
+              <div
+                key={item.title}
+                className="p-6 rounded-2xl bg-[#F5F5F5] border border-transparent hover:border-[#8B1A2F]/20 transition-all group"
+              >
+                <div className="w-12 h-12 bg-[#8B1A2F]/10 rounded-xl flex items-center justify-center mb-4 group-hover:bg-[#8B1A2F] transition-colors">
+                  <Icon
+                    name={item.icon as string}
+                    size={22}
+                    className="text-[#8B1A2F] group-hover:text-white transition-colors"
+                    fallback="Info"
+                  />
                 </div>
-                <h3 className="font-oswald text-lg text-[#2C2E33] mb-2 tracking-wide">{item.title}</h3>
+                <h3 className="font-oswald text-lg text-[#1A1C20] mb-2 tracking-wide">{item.title}</h3>
                 <p className="text-gray-500 text-sm leading-relaxed">{item.text}</p>
               </div>
             ))}
           </div>
 
-          <div className="mt-10 p-6 bg-[#8B1A2F] rounded-xl flex flex-col md:flex-row items-center justify-between gap-4">
+          <div className="mt-10 p-7 bg-gradient-to-r from-[#8B1A2F] to-[#6e1525] rounded-2xl flex flex-col md:flex-row items-center justify-between gap-4 shadow-lg">
             <div>
-              <p className="font-oswald text-xl text-white tracking-wide">Нужна консультация по условиям аренды?</p>
-              <p className="text-white/70 text-sm mt-1">Наши менеджеры ответят на все вопросы</p>
+              <p className="font-oswald text-2xl text-white tracking-wide">
+                Нужна консультация?
+              </p>
+              <p className="text-white/70 text-sm mt-1">
+                Позвоните — ответим на любой вопрос по условиям аренды
+              </p>
             </div>
-            <button
-              onClick={() => scrollTo("contacts")}
-              className="bg-white text-[#8B1A2F] font-oswald tracking-wider px-6 py-3 rounded-lg hover:bg-gray-100 transition-colors whitespace-nowrap"
+            <a
+              href="tel:+79991377779"
+              className="flex items-center gap-2 bg-white text-[#8B1A2F] font-oswald tracking-wider px-7 py-3.5 rounded-xl hover:bg-gray-100 transition-colors whitespace-nowrap shadow"
             >
-              ПОЗВОНИТЬ НАМ
-            </button>
+              <Icon name="Phone" size={16} />
+              8 999 137-77-79
+            </a>
           </div>
         </div>
       </section>
 
       {/* DELIVERY */}
-      <section id="delivery" className="py-20 bg-[#EBEBEB]">
+      <section id="delivery" className="py-20 bg-[#EAEAEA]">
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex items-center gap-3 mb-10">
-            <div className="w-1 h-8 bg-[#8B1A2F] rounded-full" />
-            <h2 className="font-oswald text-4xl text-[#2C2E33] tracking-wide">ДОСТАВКА</h2>
+            <div className="w-1 h-9 bg-[#8B1A2F] rounded-full" />
+            <h2 className="font-oswald text-4xl text-[#1A1C20] tracking-wide">ДОСТАВКА</h2>
           </div>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
             <div className="space-y-4">
               {[
-                { icon: "Truck", title: "Собственный автопарк", text: "Специализированные транспортные средства для перевозки крупногабаритной техники" },
-                { icon: "Clock", title: "Доставка день в день", text: "При заявке до 14:00 — доставка в день обращения (зависит от загруженности)" },
-                { icon: "MapPin", title: "Выезд на объект", text: "Специалист помогает разгрузить и проверить технику непосредственно на строительной площадке" },
-                { icon: "RotateCcw", title: "Самовывоз — бесплатно", text: "Можно забрать технику со склада самостоятельно, без оплаты доставки" },
+                { icon: "Truck", title: "Собственный транспорт", text: "Специализированные ТС для перевозки крупногабаритного и тяжёлого оборудования" },
+                { icon: "Clock", title: "Доставка в день заявки", text: "При заказе до 13:00 — доставим в этот же день (зависит от загруженности)" },
+                { icon: "MapPin", title: "Выгрузка на объекте", text: "Специалист помогает разгрузить и передать технику непосредственно на площадке" },
+                { icon: "Package", title: "Самовывоз — бесплатно", text: "Заберите технику со склада сами без каких-либо доплат" },
               ].map((d) => (
-                <div key={d.title} className="flex gap-4 bg-white p-4 rounded-xl border border-gray-100">
-                  <div className="w-10 h-10 bg-[#8B1A2F]/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                <div
+                  key={d.title}
+                  className="flex gap-4 bg-white p-5 rounded-2xl border border-gray-100 hover:border-[#8B1A2F]/20 transition-all"
+                >
+                  <div className="w-11 h-11 bg-[#8B1A2F]/10 rounded-xl flex items-center justify-center flex-shrink-0">
                     <Icon name={d.icon as string} size={20} className="text-[#8B1A2F]" fallback="Info" />
                   </div>
                   <div>
-                    <p className="font-semibold text-[#2C2E33] text-sm">{d.title}</p>
-                    <p className="text-gray-500 text-xs mt-0.5">{d.text}</p>
+                    <p className="font-semibold text-[#1A1C20] text-sm">{d.title}</p>
+                    <p className="text-gray-500 text-xs mt-1 leading-relaxed">{d.text}</p>
                   </div>
                 </div>
               ))}
             </div>
 
             <div>
-              <h3 className="font-oswald text-2xl text-[#2C2E33] mb-5 tracking-wide">СТОИМОСТЬ ДОСТАВКИ</h3>
-              <div className="bg-white rounded-xl overflow-hidden border border-gray-100 shadow-sm">
+              <h3 className="font-oswald text-2xl text-[#1A1C20] mb-5 tracking-wide">
+                ТАРИФЫ ДОСТАВКИ
+              </h3>
+              <div className="bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm">
                 <table className="w-full">
                   <thead>
-                    <tr className="bg-[#2C2E33] text-white">
-                      <th className="font-oswald tracking-wide text-left px-5 py-3 text-sm">Зона</th>
-                      <th className="font-oswald tracking-wide text-left px-5 py-3 text-sm">Расстояние</th>
-                      <th className="font-oswald tracking-wide text-right px-5 py-3 text-sm">Стоимость</th>
+                    <tr className="bg-[#1A1C20] text-white">
+                      <th className="font-oswald tracking-wide text-left px-5 py-3.5 text-sm">Зона</th>
+                      <th className="font-oswald tracking-wide text-left px-5 py-3.5 text-sm">Расстояние</th>
+                      <th className="font-oswald tracking-wide text-right px-5 py-3.5 text-sm">Стоимость</th>
                     </tr>
                   </thead>
                   <tbody>
                     {DELIVERY_ZONES.map((zone, i) => (
-                      <tr key={zone.zone} className={i % 2 === 0 ? "bg-white" : "bg-gray-50"}>
-                        <td className="px-5 py-3 text-[#2C2E33] font-medium text-sm">{zone.zone}</td>
-                        <td className="px-5 py-3 text-gray-500 text-sm">{zone.distance}</td>
-                        <td className="px-5 py-3 text-[#8B1A2F] font-oswald text-right">{zone.price}</td>
+                      <tr key={zone.zone} className={i % 2 === 0 ? "bg-white" : "bg-gray-50/70"}>
+                        <td className="px-5 py-3.5 text-[#1A1C20] font-medium text-sm">{zone.zone}</td>
+                        <td className="px-5 py-3.5 text-gray-500 text-sm">{zone.distance}</td>
+                        <td className="px-5 py-3.5 text-[#8B1A2F] font-oswald text-right font-semibold">{zone.price}</td>
                       </tr>
                     ))}
                   </tbody>
                 </table>
               </div>
-              <p className="text-xs text-gray-400 mt-3 ml-1">* Стоимость доставки техники весом от 5 тонн рассчитывается индивидуально</p>
+              <p className="text-xs text-gray-400 mt-3 ml-1">
+                * Доставка техники свыше 200 кг — по индивидуальному расчёту
+              </p>
             </div>
           </div>
         </div>
@@ -374,25 +563,30 @@ const Index = () => {
       <section id="reviews" className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex items-center gap-3 mb-10">
-            <div className="w-1 h-8 bg-[#8B1A2F] rounded-full" />
-            <h2 className="font-oswald text-4xl text-[#2C2E33] tracking-wide">ОТЗЫВЫ КЛИЕНТОВ</h2>
+            <div className="w-1 h-9 bg-[#8B1A2F] rounded-full" />
+            <h2 className="font-oswald text-4xl text-[#1A1C20] tracking-wide">ОТЗЫВЫ КЛИЕНТОВ</h2>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             {REVIEWS.map((review) => (
-              <div key={review.name} className="bg-[#F5F5F5] rounded-xl p-6 border border-gray-100 relative">
-                <div className="absolute top-4 right-5 text-5xl text-[#8B1A2F]/15 font-oswald leading-none select-none">"</div>
-                <div className="flex gap-1 mb-3">
+              <div
+                key={review.name}
+                className="bg-[#F5F5F5] rounded-2xl p-6 border border-gray-100 relative overflow-hidden"
+              >
+                <div className="absolute -top-2 right-4 text-8xl text-[#8B1A2F]/8 font-oswald leading-none select-none pointer-events-none">
+                  "
+                </div>
+                <div className="flex gap-0.5 mb-3">
                   {Array.from({ length: review.rating }).map((_, i) => (
-                    <Icon key={i} name="Star" size={14} className="text-amber-400" />
+                    <Icon key={i} name="Star" size={15} className="text-amber-400" />
                   ))}
                 </div>
-                <p className="text-gray-600 text-sm leading-relaxed mb-4">{review.text}</p>
+                <p className="text-gray-600 text-sm leading-relaxed mb-5">{review.text}</p>
                 <div className="flex items-center gap-3">
-                  <div className="w-9 h-9 rounded-full bg-[#8B1A2F] flex items-center justify-center text-white font-oswald text-sm">
+                  <div className="w-10 h-10 rounded-full bg-[#8B1A2F] flex items-center justify-center text-white font-oswald text-base shadow">
                     {review.name[0]}
                   </div>
                   <div>
-                    <p className="font-semibold text-[#2C2E33] text-sm">{review.name}</p>
+                    <p className="font-semibold text-[#1A1C20] text-sm">{review.name}</p>
                     <p className="text-xs text-gray-400">{review.company}</p>
                   </div>
                 </div>
@@ -403,28 +597,42 @@ const Index = () => {
       </section>
 
       {/* CONTACTS */}
-      <section id="contacts" className="py-20 bg-[#2C2E33]">
+      <section id="contacts" className="py-20 bg-[#1A1C20]">
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex items-center gap-3 mb-10">
-            <div className="w-1 h-8 bg-[#8B1A2F] rounded-full" />
+            <div className="w-1 h-9 bg-[#8B1A2F] rounded-full" />
             <h2 className="font-oswald text-4xl text-white tracking-wide">КОНТАКТЫ</h2>
           </div>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
+            {/* Contact info */}
             <div className="space-y-6">
+              <div>
+                <div className="flex items-center gap-2 mb-1">
+                  <div className="w-9 h-9 bg-[#8B1A2F] rounded-xl flex items-center justify-center flex-shrink-0">
+                    <Icon name="Building2" size={17} className="text-white" fallback="Info" />
+                  </div>
+                  <p className="text-gray-400 text-xs uppercase tracking-widest">Компания</p>
+                </div>
+                <p className="text-white font-oswald text-2xl tracking-wide ml-11">РентМастер</p>
+                <p className="text-gray-400 text-sm ml-11 mt-1 leading-relaxed">
+                  Надёжный партнёр в сфере аренды строительного оборудования и инструмента
+                </p>
+              </div>
+
               {[
-                { icon: "Phone", label: "Телефон", value: "8 800 123-45-67 (бесплатно)", href: "tel:+78001234567" },
-                { icon: "Mail", label: "Email", value: "info@stroyprokat.ru", href: "mailto:info@stroyprokat.ru" },
-                { icon: "MapPin", label: "Адрес склада", value: "г. Москва, ул. Промышленная, д. 15", href: null },
-                { icon: "Clock", label: "Режим работы", value: "Пн–Пт: 8:00–20:00, Сб–Вс: 9:00–18:00", href: null },
+                { icon: "Phone", label: "Телефон", value: "8 999 137-77-79", href: "tel:+79991377779" },
+                { icon: "Mail", label: "Email", value: "info@rentmaster.ru", href: "mailto:info@rentmaster.ru" },
+                { icon: "MapPin", label: "Адрес", value: "Уточните адрес по телефону", href: null },
+                { icon: "Clock", label: "Режим работы", value: "Пн–Пт: 8:00–20:00 / Сб–Вс: 9:00–18:00", href: null },
               ].map((c) => (
-                <div key={c.label} className="flex gap-4">
-                  <div className="w-10 h-10 bg-[#8B1A2F] rounded-lg flex items-center justify-center flex-shrink-0">
-                    <Icon name={c.icon as string} size={18} className="text-white" fallback="Info" />
+                <div key={c.label} className="flex gap-4 items-start">
+                  <div className="w-9 h-9 bg-[#8B1A2F] rounded-xl flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <Icon name={c.icon as string} size={16} className="text-white" fallback="Info" />
                   </div>
                   <div>
-                    <p className="text-gray-400 text-xs mb-0.5">{c.label}</p>
+                    <p className="text-gray-500 text-xs mb-0.5">{c.label}</p>
                     {c.href ? (
-                      <a href={c.href} className="text-white font-medium hover:text-[#d14060] transition-colors">
+                      <a href={c.href} className="text-white font-medium hover:text-[#D14060] transition-colors">
                         {c.value}
                       </a>
                     ) : (
@@ -435,28 +643,33 @@ const Index = () => {
               ))}
             </div>
 
-            <div className="bg-white/5 border border-white/10 rounded-xl p-6">
-              <h3 className="font-oswald text-xl text-white tracking-wide mb-5">ОСТАВИТЬ ЗАЯВКУ</h3>
+            {/* Form */}
+            <div className="bg-white/5 border border-white/10 rounded-2xl p-7">
+              <h3 className="font-oswald text-xl text-white tracking-widest mb-6">
+                ОСТАВИТЬ ЗАЯВКУ
+              </h3>
               <div className="space-y-3">
                 <input
                   type="text"
                   placeholder="Ваше имя"
-                  className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-[#8B1A2F] transition-colors text-sm"
+                  className="w-full px-4 py-3.5 bg-white/8 border border-white/15 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-[#8B1A2F] transition-colors text-sm"
                 />
                 <input
                   type="tel"
                   placeholder="Телефон"
-                  className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-[#8B1A2F] transition-colors text-sm"
+                  className="w-full px-4 py-3.5 bg-white/8 border border-white/15 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-[#8B1A2F] transition-colors text-sm"
                 />
                 <textarea
                   placeholder="Какое оборудование вас интересует?"
-                  rows={3}
-                  className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-[#8B1A2F] transition-colors text-sm resize-none"
+                  rows={4}
+                  className="w-full px-4 py-3.5 bg-white/8 border border-white/15 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-[#8B1A2F] transition-colors text-sm resize-none"
                 />
-                <button className="w-full bg-[#8B1A2F] hover:bg-[#6e1525] text-white font-oswald tracking-wider py-3 rounded-lg transition-colors text-base">
+                <button className="w-full bg-[#8B1A2F] hover:bg-[#6e1525] text-white font-oswald tracking-widest py-3.5 rounded-xl transition-all hover:shadow-lg hover:shadow-[#8B1A2F]/30 text-base">
                   ОТПРАВИТЬ ЗАЯВКУ
                 </button>
-                <p className="text-gray-500 text-xs text-center">Перезвоним в течение 15 минут в рабочее время</p>
+                <p className="text-gray-600 text-xs text-center">
+                  Перезвоним в течение 15 минут в рабочее время
+                </p>
               </div>
             </div>
           </div>
@@ -464,23 +677,28 @@ const Index = () => {
       </section>
 
       {/* FOOTER */}
-      <footer className="bg-black/80 py-6">
-        <div className="max-w-7xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-3">
-          <div className="flex items-center gap-2">
-            <div className="w-6 h-6 bg-[#8B1A2F] rounded flex items-center justify-center">
-              <Icon name="Hammer" size={13} className="text-white" />
+      <footer className="bg-black py-7 border-t border-white/5">
+        <div className="max-w-7xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-4">
+          <div className="flex items-center gap-2.5">
+            <div className="w-7 h-7 bg-[#8B1A2F] rounded-lg flex items-center justify-center">
+              <Icon name="Wrench" size={14} className="text-white" />
             </div>
-            <span className="font-oswald text-white text-sm tracking-wide">
-              СТРОЙ<span className="text-[#d14060]">ПРОКАТ</span>
-            </span>
+            <div>
+              <span className="font-oswald text-white text-sm tracking-widest">
+                РЕНТ<span className="text-[#D14060]">МАСТЕР</span>
+              </span>
+              <div className="text-[10px] text-gray-600 tracking-wider">АРЕНДА ИНСТРУМЕНТА</div>
+            </div>
           </div>
-          <p className="text-gray-500 text-xs">© 2024 СтройПрокат. Аренда строительного оборудования.</p>
+          <p className="text-gray-600 text-xs text-center">
+            © 2024 РентМастер — аренда строительного оборудования и инструмента
+          </p>
           <div className="flex flex-wrap gap-3 justify-center">
             {NAV_LINKS.map((link) => (
               <button
                 key={link.id}
                 onClick={() => scrollTo(link.id)}
-                className="text-gray-500 hover:text-white text-xs transition-colors"
+                className="text-gray-600 hover:text-white text-xs transition-colors"
               >
                 {link.label}
               </button>
