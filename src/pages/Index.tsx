@@ -111,7 +111,10 @@ const CATALOG = [
     name: "Виброплита Сплитстоун VS-244 90кг Loncin",
     category: "compaction", price: "1 200", unit: "сутки", badge: null, icon: "ArrowDown",
     specs: ["85 кг", "Loncin G160F 4.8 л.с.", "Глубина уплотнения 500 мм", "Центробеж. сила 13.5 кН", "Частота 93 Гц", "Бак 3.1 л / расход 1.4 л/ч"],
-    images: [] as string[],
+    images: [
+      "https://cdn.poehali.dev/projects/a75d3d4b-fdc5-4860-b617-00ca6b3feb56/bucket/315939d2-09c1-4330-941c-c8b4cd60a238.jpg",
+      "https://cdn.poehali.dev/projects/a75d3d4b-fdc5-4860-b617-00ca6b3feb56/bucket/f5823b99-1b0f-4c46-891e-86034f0f75a7.jpg",
+    ],
   },
   {
     id: 12, art: "CMP-003",
