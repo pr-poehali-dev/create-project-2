@@ -59,7 +59,10 @@ const CATALOG = [
     name: "Установка алмазного бурения AT-S + бак SU-180M",
     category: "drilling", price: "1 800", unit: "сутки", badge: null, icon: "Drill",
     specs: ["2200 Вт", "Ø до 180 мм", "Мокрое/сухое", "Вес 10.7 кг"],
-    images: [] as string[],
+    images: [
+      "https://cdn.poehali.dev/projects/a75d3d4b-fdc5-4860-b617-00ca6b3feb56/bucket/064e91dd-e9f8-4629-bba5-e9b1190cc7c5.jpg",
+      "https://cdn.poehali.dev/projects/a75d3d4b-fdc5-4860-b617-00ca6b3feb56/bucket/11acf046-10b6-4af5-8c62-943937d24a7c.jpg",
+    ],
   },
   {
     id: 5, art: "DRL-002",
