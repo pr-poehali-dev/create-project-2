@@ -108,9 +108,9 @@ const CATALOG = [
   },
   {
     id: 11, art: "CMP-002",
-    name: "Виброплита 90 кг",
-    category: "compaction", price: "1 800", unit: "сутки", badge: null, icon: "ArrowDown",
-    specs: ["90 кг", "Плиточное основание", "Грунт/щебень"],
+    name: "Виброплита Сплитстоун VS-244 90кг Loncin",
+    category: "compaction", price: "1 200", unit: "сутки", badge: null, icon: "ArrowDown",
+    specs: ["85 кг", "Loncin G160F 4.8 л.с.", "Глубина уплотнения 500 мм", "Центробеж. сила 13.5 кН", "Частота 93 Гц", "Бак 3.1 л / расход 1.4 л/ч"],
     images: [] as string[],
   },
   {
