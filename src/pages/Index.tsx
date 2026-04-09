@@ -377,7 +377,7 @@ const Index = () => {
             </h1>
 
             {/* Subtext */}
-            <p className="text-gray-300 text-lg md:text-xl leading-relaxed mb-3 max-w-2xl">
+            <p className="text-gray-300 text-lg md:text-xl leading-relaxed mb-3 max-w-2xl" style={{textShadow: '1px 2px 8px rgba(0,0,0,0.9), 0 1px 4px rgba(0,0,0,0.95)'}}>
               Надёжный партнёр в сфере аренды строительного оборудования и инструмента.
             </p>
             <p className="text-gray-400 text-base leading-relaxed mb-3 max-w-xl">
