@@ -617,9 +617,9 @@ const Index = () => {
 
               {[
                 { icon: "Phone", label: "Телефон", value: "8 999 137-77-79", href: "tel:+79991377779" },
-                { icon: "Mail", label: "Email", value: "info@rentmaster.ru", href: "mailto:info@rentmaster.ru" },
-                { icon: "MapPin", label: "Адрес", value: "Уточните адрес по телефону", href: null },
-                { icon: "Clock", label: "Режим работы", value: "Пн–Пт: 8:00–20:00 / Сб–Вс: 9:00–18:00", href: null },
+                { icon: "Mail", label: "Email", value: "Reentmaster@yandex.ru", href: "mailto:Reentmaster@yandex.ru" },
+                { icon: "MapPin", label: "Адрес", value: "г. Нижний Новгород, ул. Ларина 27к8", href: null },
+                { icon: "Clock", label: "Режим работы", value: "Пн–Пт: 8:00–19:00 / Сб–Вс: 8:00–18:00", href: null },
               ].map((c) => (
                 <div key={c.label} className="flex gap-4 items-start">
                   <div className="w-9 h-9 bg-[#8B1A2F] rounded-xl flex items-center justify-center flex-shrink-0 mt-0.5">
