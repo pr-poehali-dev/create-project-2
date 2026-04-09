@@ -149,18 +149,14 @@ const Index = () => {
         <div className="max-w-7xl mx-auto px-4 flex items-center justify-between h-16">
           {/* Logo */}
           <div
-            className="flex items-center gap-3 cursor-pointer select-none"
+            className="cursor-pointer select-none"
             onClick={() => scrollTo("home")}
           >
-            <div className="w-9 h-9 bg-[#8B1A2F] rounded-lg flex items-center justify-center shadow-lg">
-              <Icon name="Wrench" size={19} className="text-white" />
-            </div>
-            <div className="leading-tight">
-              <span className="font-oswald text-white text-xl tracking-widest font-bold">
-                РЕНТ<span className="text-[#D14060]">МАСТЕР</span>
-              </span>
-              <div className="text-[10px] text-gray-400 tracking-wider -mt-0.5">АРЕНДА ИНСТРУМЕНТА</div>
-            </div>
+            <img
+              src="https://cdn.poehali.dev/projects/a75d3d4b-fdc5-4860-b617-00ca6b3feb56/bucket/feab8425-0bfd-432f-bd8f-fdfb797f900d.png"
+              alt="РентМастер"
+              className="h-10 w-auto object-contain"
+            />
           </div>
 
           {/* Nav */}
@@ -679,16 +675,12 @@ const Index = () => {
       {/* FOOTER */}
       <footer className="bg-black py-7 border-t border-white/5">
         <div className="max-w-7xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-2.5">
-            <div className="w-7 h-7 bg-[#8B1A2F] rounded-lg flex items-center justify-center">
-              <Icon name="Wrench" size={14} className="text-white" />
-            </div>
-            <div>
-              <span className="font-oswald text-white text-sm tracking-widest">
-                РЕНТ<span className="text-[#D14060]">МАСТЕР</span>
-              </span>
-              <div className="text-[10px] text-gray-600 tracking-wider">АРЕНДА ИНСТРУМЕНТА</div>
-            </div>
+          <div className="cursor-pointer" onClick={() => scrollTo("home")}>
+            <img
+              src="https://cdn.poehali.dev/projects/a75d3d4b-fdc5-4860-b617-00ca6b3feb56/bucket/feab8425-0bfd-432f-bd8f-fdfb797f900d.png"
+              alt="РентМастер"
+              className="h-8 w-auto object-contain opacity-80"
+            />
           </div>
           <p className="text-gray-600 text-xs text-center">
             © 2024 РентМастер — аренда строительного оборудования и инструмента
