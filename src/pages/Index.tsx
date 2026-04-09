@@ -42,7 +42,7 @@ const CATALOG = [
     name: "Болгарка (УШМ) KEYANG DG-1102C",
     category: "grinder", price: "700", unit: "сутки", badge: null, icon: "Zap",
     specs: ["1100 Вт", "Диск 125 мм", "Плавный пуск", "Вес 1.6 кг"],
-    images: [] as string[],
+    images: ["https://cdn.poehali.dev/projects/a75d3d4b-fdc5-4860-b617-00ca6b3feb56/bucket/27b57e92-1791-4f64-a460-2ada47763cde.jpg"],
   },
   {
     id: 3, art: "USM-003",
