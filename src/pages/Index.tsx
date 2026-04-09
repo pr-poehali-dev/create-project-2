@@ -371,9 +371,9 @@ const Index = () => {
             </div>
 
             {/* Headline */}
-            <h1 className="font-oswald text-5xl md:text-6xl lg:text-7xl text-white leading-[1.05] mb-6 tracking-wide">
+            <h1 className="font-oswald text-5xl md:text-6xl lg:text-7xl text-white leading-[1.05] mb-6 tracking-wide" style={{textShadow: '2px 3px 12px rgba(0,0,0,0.8), 0 2px 6px rgba(0,0,0,0.9)'}}>
               КОМПАНИЯ<br />
-              <span className="font-russo text-[#8B1A2F]" style={{textShadow: '0 0 30px rgba(139,26,47,0.4)'}}>РЕНТМАСТЕР</span>
+              <span className="font-russo text-[#8B1A2F]" style={{textShadow: '2px 3px 14px rgba(0,0,0,0.95), 0 0 30px rgba(139,26,47,0.5)'}}>РЕНТМАСТЕР</span>
             </h1>
 
             {/* Subtext */}
