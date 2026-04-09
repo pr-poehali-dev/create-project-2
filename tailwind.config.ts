@@ -6,7 +6,7 @@ export default {
 		"./pages/**/*.{ts,tsx}",
 		"./components/**/*.{ts,tsx}",
 		"./app/**/*.{ts,tsx}",
-		"./src/**/*.{ts,tsx}",
+		"./src/**/*.{ts,tsx}"
 	],
 	prefix: "",
 	theme: {
@@ -18,6 +18,10 @@ export default {
 			}
 		},
 		extend: {
+			fontFamily: {
+				oswald: ['Oswald', 'sans-serif'],
+				golos: ['Golos Text', 'sans-serif'],
+			},
 			colors: {
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
@@ -61,6 +65,32 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
+				},
+				crimson: {
+					50: '#fdf2f4',
+					100: '#fce7ea',
+					200: '#f9d0d7',
+					300: '#f3aab7',
+					400: '#eb7890',
+					500: '#de4d6b',
+					600: '#c93055',
+					700: '#a82246',
+					800: '#8d1e3e',
+					900: '#781d39',
+					DEFAULT: '#8B1A2F',
+				},
+				steel: {
+					50: '#f5f5f6',
+					100: '#e8e9ea',
+					200: '#d4d5d8',
+					300: '#b3b5ba',
+					400: '#8c8f96',
+					500: '#70737b',
+					600: '#5c5f67',
+					700: '#4e5057',
+					800: '#434549',
+					900: '#3b3c40',
+					DEFAULT: '#2C2E33',
 				}
 			},
 			borderRadius: {
@@ -70,25 +100,27 @@ export default {
 			},
 			keyframes: {
 				'accordion-down': {
-					from: {
-						height: '0'
-					},
-					to: {
-						height: 'var(--radix-accordion-content-height)'
-					}
+					from: { height: '0' },
+					to: { height: 'var(--radix-accordion-content-height)' }
 				},
 				'accordion-up': {
-					from: {
-						height: 'var(--radix-accordion-content-height)'
-					},
-					to: {
-						height: '0'
-					}
+					from: { height: 'var(--radix-accordion-content-height)' },
+					to: { height: '0' }
+				},
+				'fade-in': {
+					from: { opacity: '0', transform: 'translateY(16px)' },
+					to: { opacity: '1', transform: 'translateY(0)' }
+				},
+				'slide-up': {
+					from: { opacity: '0', transform: 'translateY(32px)' },
+					to: { opacity: '1', transform: 'translateY(0)' }
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'fade-in': 'fade-in 0.5s ease-out forwards',
+				'slide-up': 'slide-up 0.6s ease-out forwards',
 			}
 		}
 	},
