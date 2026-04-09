@@ -363,9 +363,9 @@ const Index = () => {
         <div className="relative max-w-7xl mx-auto px-4 py-24 pb-32">
           <div className="max-w-3xl">
             {/* Badge */}
-            <div className="inline-flex items-center gap-2 bg-[#8B1A2F]/25 border border-[#8B1A2F]/50 rounded-full px-5 py-2 mb-8">
+            <div className="inline-flex items-center gap-2 bg-[#8B1A2F]/30 rounded-full px-5 py-2 mb-8" style={{boxShadow: '0 0 18px 4px rgba(139,26,47,0.55), 0 0 6px 1px rgba(209,64,96,0.35)'}}>
               <div className="w-2 h-2 rounded-full bg-[#D14060] animate-pulse" />
-              <span className="text-[#F08090] text-sm tracking-wide">
+              <span className="text-[#ffb0bc] text-base tracking-wide font-medium">
                 Надёжный партнёр в сфере аренды
               </span>
             </div>
