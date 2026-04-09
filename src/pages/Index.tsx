@@ -1,6 +1,12 @@
 import { useState } from "react";
 import Icon from "@/components/ui/icon";
 
+type CatalogItem = {
+  id: number; art: string; name: string; category: string;
+  price: string; unit: string; badge: string | null; icon: string;
+  specs: string[]; images: string[];
+};
+
 const HERO_IMG = "https://cdn.poehali.dev/projects/a75d3d4b-fdc5-4860-b617-00ca6b3feb56/files/8217c8c0-388f-4c77-86e5-3b96d1623d82.jpg";
 
 const NAV_LINKS = [
@@ -26,74 +32,89 @@ const CATALOG = [
     name: "Аккумуляторная болгарка (УШМ) TOUA DBLAG125-1",
     category: "grinder", price: "800", unit: "сутки", badge: null, icon: "Zap",
     specs: ["Диск 125 мм", "Акк. 4 А·ч / 18 В", "Вес 2.05 кг", "Рег. оборотов"],
+    images: [
+      "https://cdn.poehali.dev/projects/a75d3d4b-fdc5-4860-b617-00ca6b3feb56/bucket/c03a8f8c-09bd-470c-aa86-c8be3b0ba7d8.jpg",
+      "https://cdn.poehali.dev/projects/a75d3d4b-fdc5-4860-b617-00ca6b3feb56/bucket/06130123-0737-4a56-9d4c-88d4b27d7d8a.jpg",
+    ],
   },
   {
     id: 2, art: "USM-002",
     name: "Болгарка (УШМ) KEYANG DG-1102C",
     category: "grinder", price: "700", unit: "сутки", badge: null, icon: "Zap",
     specs: ["1100 Вт", "Диск 125 мм", "Плавный пуск", "Вес 1.6 кг"],
+    images: [] as string[],
   },
   {
     id: 3, art: "USM-003",
     name: "Болгарка (УШМ) Makita GA 9020 SF",
     category: "grinder", price: "900", unit: "сутки", badge: "Хит", icon: "Zap",
     specs: ["2200 Вт", "Диск 230 мм", "Плавный пуск", "Вес 5.8 кг"],
+    images: [] as string[],
   },
   {
     id: 4, art: "DRL-001",
     name: "Установка алмазного бурения AT-S + бак SU-180M",
     category: "drilling", price: "1 800", unit: "сутки", badge: null, icon: "Drill",
     specs: ["2200 Вт", "Ø до 180 мм", "Мокрое/сухое", "Вес 10.7 кг"],
+    images: [] as string[],
   },
   {
     id: 5, art: "DRL-002",
     name: "Установка Алмазная Diam 400",
     category: "drilling", price: "2 500", unit: "сутки", badge: "Новинка", icon: "Drill",
     specs: ["6000 Вт", "Ø коронки до 400 мм", "Изм. угол наклона"],
+    images: [] as string[],
   },
   {
     id: 6, art: "CUT-001",
     name: "Бетонорез электрический Concrete SAW 400",
     category: "concrete", price: "2 000", unit: "сутки", badge: null, icon: "Scissors",
     specs: ["5500 Вт", "Диск 400 мм", "Рез 150 мм", "4700 об/мин"],
+    images: [] as string[],
   },
   {
     id: 7, art: "CUT-002",
     name: "Бетонорез кольцевой BHJ500 электрический",
     category: "concrete", price: "2 500", unit: "сутки", badge: null, icon: "Scissors",
     specs: ["Ø 520 мм", "Глубина реза 40 см", "Железобетон/мрамор"],
+    images: [] as string[],
   },
   {
     id: 8, art: "CON-001",
     name: "Машина затирочная (вертолёт) TSS DMR1000L",
     category: "concrete", price: "2 500", unit: "сутки", badge: null, icon: "RefreshCw",
     specs: ["Loncin G200F 6.5 л.с.", "Ширина 900 мм", "Бензиновый"],
+    images: [] as string[],
   },
   {
     id: 9, art: "CON-002",
     name: "Бетономешалка Electrolite БМ-165 E",
     category: "concrete", price: "1 000", unit: "сутки", badge: null, icon: "RefreshCw",
     specs: ["800 Вт", "165 л / 123 л раствора", "Чугунный венец", "Вес 52 кг"],
+    images: [] as string[],
   },
   {
     id: 10, art: "CMP-001",
     name: "Вибронога (трамбовка)",
     category: "compaction", price: "2 500", unit: "сутки", badge: null, icon: "ArrowDown",
     specs: ["Уплотнение грунта", "Аренда с оператором"],
+    images: [] as string[],
   },
   {
     id: 11, art: "CMP-002",
     name: "Виброплита 90 кг",
     category: "compaction", price: "1 800", unit: "сутки", badge: null, icon: "ArrowDown",
     specs: ["90 кг", "Плиточное основание", "Грунт/щебень"],
+    images: [] as string[],
   },
   {
     id: 12, art: "CMP-003",
     name: "Виброплита TOR-C 120",
     category: "compaction", price: "по запросу", unit: "сутки", badge: "Новинка", icon: "ArrowDown",
     specs: ["120 кг", "Повышенная производительность"],
+    images: [] as string[],
   },
-];
+] satisfies CatalogItem[];
 
 const REVIEWS = [
   { name: "Андрей Климов", company: "ООО СтройПроект", text: "Брали вертолёт для затирки бетона на объекте 2000 м². Техника в отличном состоянии, доставили строго по времени. Сэкономили кучу денег по сравнению с покупкой!", rating: 5 },
@@ -124,6 +145,7 @@ const Index = () => {
   const [activeCategory, setActiveCategory] = useState("all");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [expandedCard, setExpandedCard] = useState<number | null>(null);
+  const [activeImage, setActiveImage] = useState<Record<number, number>>({});
 
   const scrollTo = (id: string) => {
     setActiveSection(id);
@@ -352,19 +374,41 @@ const Index = () => {
                   className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-lg border border-gray-100 transition-all hover:-translate-y-1 group flex flex-col"
                 >
                   {/* Card image zone */}
-                  <div className="h-36 bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center relative">
-                    <Icon
-                      name={item.icon as string}
-                      size={52}
-                      className="text-gray-300 group-hover:text-[#8B1A2F] transition-colors duration-300"
-                      fallback="Wrench"
-                    />
+                  <div className="h-40 bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center relative overflow-hidden">
+                    {item.images ? (
+                      <>
+                        <img
+                          src={item.images[activeImage[item.id] ?? 0]}
+                          alt={item.name}
+                          className="w-full h-full object-contain p-2 transition-opacity duration-300"
+                        />
+                        {item.images.length > 1 && (
+                          <>
+                            <button
+                              onClick={(e) => { e.stopPropagation(); setActiveImage((prev) => ({ ...prev, [item.id]: 0 })); }}
+                              className={`absolute bottom-2 left-1/2 -translate-x-3 w-2 h-2 rounded-full transition-colors ${(activeImage[item.id] ?? 0) === 0 ? "bg-[#8B1A2F]" : "bg-gray-300 hover:bg-gray-400"}`}
+                            />
+                            <button
+                              onClick={(e) => { e.stopPropagation(); setActiveImage((prev) => ({ ...prev, [item.id]: 1 })); }}
+                              className={`absolute bottom-2 left-1/2 translate-x-1 w-2 h-2 rounded-full transition-colors ${(activeImage[item.id] ?? 0) === 1 ? "bg-[#8B1A2F]" : "bg-gray-300 hover:bg-gray-400"}`}
+                            />
+                          </>
+                        )}
+                      </>
+                    ) : (
+                      <Icon
+                        name={item.icon as string}
+                        size={52}
+                        className="text-gray-300 group-hover:text-[#8B1A2F] transition-colors duration-300"
+                        fallback="Wrench"
+                      />
+                    )}
                     {item.badge && (
                       <span className="absolute top-3 right-3 bg-[#8B1A2F] text-white text-[11px] font-oswald px-2.5 py-1 rounded-full tracking-wider shadow">
                         {item.badge}
                       </span>
                     )}
-                    <span className="absolute bottom-2 left-3 text-[10px] text-gray-400 font-mono bg-white/80 px-2 py-0.5 rounded">
+                    <span className="absolute top-2 left-2 text-[10px] text-gray-400 font-mono bg-white/80 px-2 py-0.5 rounded">
                       {item.art}
                     </span>
                   </div>
