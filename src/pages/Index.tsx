@@ -409,13 +409,17 @@ const Index = () => {
         <div className="absolute bottom-0 left-0 right-0 bg-[#8B1A2F]/95 backdrop-blur-sm border-t border-white/10">
           <div className="max-w-7xl mx-auto px-4 py-4 grid grid-cols-2 md:grid-cols-4 gap-4">
             {[
-              { value: "12+", label: "видов оборудования" },
-              { value: "7 лет", label: "на рынке" },
-              { value: "24/7", label: "поддержка" },
-              { value: "1 сутки", label: "мин. срок аренды" },
+              { value: "300+", label: "позиций оборудования", truck: false },
+              { value: "3 года", label: "на рынке", truck: false },
+              { value: "24/7", label: "поддержка", truck: false },
+              { value: "", label: "быстрая доставка", truck: true },
             ].map((s) => (
-              <div key={s.label} className="text-center">
-                <div className="font-oswald text-2xl text-white font-bold">{s.value}</div>
+              <div key={s.label} className="text-center flex flex-col items-center">
+                {s.truck ? (
+                  <Icon name="Truck" size={28} className="text-white mb-0.5" />
+                ) : (
+                  <div className="font-oswald text-2xl text-white font-bold">{s.value}</div>
+                )}
                 <div className="text-white/65 text-xs mt-0.5">{s.label}</div>
               </div>
             ))}
