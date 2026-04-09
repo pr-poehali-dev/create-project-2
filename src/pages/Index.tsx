@@ -411,7 +411,7 @@ const Index = () => {
             {[
               { value: "300+", label: "позиций оборудования", truck: false },
               { value: "3 года", label: "на рынке", truck: false },
-              { value: "24/7", label: "поддержка", truck: false },
+              { value: "1 сутки", label: "мин. срок аренды", truck: false },
               { value: "", label: "быстрая доставка", truck: true },
             ].map((s) => (
               <div key={s.label} className="text-center flex flex-col items-center">
