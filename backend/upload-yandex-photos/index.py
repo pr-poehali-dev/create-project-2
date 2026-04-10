@@ -37,7 +37,7 @@ def handler(event: dict, context) -> dict:
     errors = {}
 
     for i in range(1, 51):
-        filename = f"{i}..jpg"
+        filename = f"{i}.jpg"
         s3_key = f"catalog/{i}.jpg"
 
         try:
