@@ -1,6 +1,5 @@
 """
-Получает список файлов с Яндекс Диска, сопоставляет по ключевому слову в имени файла
-с позициями каталога, скачивает и сохраняет в S3. Возвращает маппинг art -> cdn_url.
+Скачивает файлы с Яндекс Диска по точному имени и сохраняет в S3 под именем catalog2/ART.ext.
 """
 import os
 import json
@@ -9,136 +8,55 @@ import boto3
 from botocore.client import Config
 
 PUBLIC_KEY = "https://disk.yandex.ru/d/kkGLrc6Df14ZDA"
-YANDEX_LIST_API = "https://cloud-api.yandex.net/v1/disk/public/resources"
 YANDEX_DL_API = "https://cloud-api.yandex.net/v1/disk/public/resources/download"
 
-CATALOG = {
-    "USM-001": "TOUA DBLAG125",
-    "USM-002": "KEYANG DG-1102",
-    "USM-003": "Makita GA 9020",
-    "DRL-001": "AT-S",
-    "DRL-002": "Diam 400",
-    "CUT-001": "Concrete SAW 400",
-    "CUT-002": "BHJ500",
-    "CON-001": "DMR1000",
-    "CON-002": "БМ-165",
-    "CMP-001": "TR72",
-    "CMP-002": "VS-244",
-    "CMP-003": "TOR-C",
-    "CMP-004": "Grost VH 85",
-    "CMP-005": "VS-104",
-    "CMP-006": "SVR 170",
-    "CON-003": "ZKVD1500",
-    "CON-004": "CV71101",
-    "DRL-003": "FPB 52",
-    "DRL-004": "FPB 71",
-    "CUT-003": "CS146",
-    "CON-005": "Zongshen",
-    "PWR-001": "DY4000",
-    "PWR-002": "DY6500",
-    "PWR-003": "DY8000",
-    "PWR-004": "BCV2200",
-    "PWR-005": "PASSAT-50",
-    "HGT-001": "тура 1.0",
-    "HGT-002": "тура 1.2",
-    "HGT-003": "Алюмет 2.2",
-    "HGT-004": "Алюмет 9",
-    "HGT-005": "Gigant L-03",
-    "HGT-006": "СИБРТЕХ",
-    "GRD-001": "LM4122",
-    "GRD-002": "XME34",
-    "GRD-003": "БМК-6.5",
-    "GRD-004": "БМК-7.0",
-    "GRD-005": "MK-7800",
-    "GRD-006": "DAT 2200",
-    "GRD-007": "GSC4840",
-    "GRD-008": "SE1738",
-    "GRD-009": "BG 225",
-    "GRD-010": "Jonco 5000",
-    "GRD-011": "МР300",
-    "GRD-012": "Т433",
-    "GRD-013": "WB 7066",
-    "PMP-001": "ДН-1100",
-    "PMP-002": "PG 950",
-    "ELT-001": "Makita 4326",
-    "ELT-002": "RH2538",
-    "ELT-003": "П-1400",
-    "ELT-004": "МРД-1400",
-    "ELT-005": "GSH25",
-    "ELT-006": "GSH65",
-    "ELT-007": "GSH90",
-    "ELT-008": "CS51185",
-    "ELT-009": "AJG06",
-    "ELT-010": "D28730",
-    "ELT-011": "ПТН 210",
-    "ELT-012": "ПТН 305",
-    "ELT-013": "ЗШ-П30",
-    "ELT-014": "ЗШ-П65",
-    "ELT-015": "РЭ 110",
-    "ELT-016": "Лобзик",
-    "ELT-017": "ДА-13",
-    "ELT-018": "1800 Нм",
-    "ELT-019": "GSN50",
-    "ELT-020": "PN2190",
-    "ELT-021": "Aspro C3",
-    "ELT-022": "ЭШМ 125",
-    "ELT-023": "СО-206",
-    "ELT-024": "DERZHI",
-    "ELT-025": "twin-850",
-    "ELT-026": "EX-16V",
-    "ELT-027": "FT1241",
-    "ELT-028": "АСПТ-1000",
-    "ELT-029": "МЕГЕОН",
-    "ELT-030": "РС-305",
-    "ELT-031": "Afacan",
-    "WLD-001": "OVERMAN 200",
-    "WLD-002": "VARTEG 230",
-    "WLD-003": "AVS-5000",
-    "OTH-001": "ADA BASIS",
-    "OTH-002": "GH10F",
-    "OTH-003": "ТДП-20000",
-    "OTH-004": "JHAVD-120",
-    "OTH-005": "Champion 256",
-    "OTH-006": "DACS 5820",
-    "OTH-007": "TSS-95",
-    "OTH-008": "кран-гусь",
-    "OTH-009": "Рохля",
-    "OTH-010": "W195",
-    "OTH-011": "DAW 500",
-    "OTH-012": "W200i",
-    "OTH-013": "Vira ET12200",
-    "OTH-014": "DAVC 2516",
-    "OTH-015": "ASA 25",
-    "OTH-016": "Домкрат",
+MAPPING = {
+    "USM-001": "Болгарка TOUA DBLAG125-1.jpg",
+    "USM-002": "Болгарка (УШМ) KEYANG DG-1102C.jpg",
+    "USM-003": "Болгарка Makita GA 9020.jpg",
+    "DRL-001": "Установка алмазного бурения AT-S.jpg",
+    "DRL-002": "Установка алмазная Diam 400.jpg",
+    "DRL-003": "Мотобур FUBAG FPB 52.jpg",
+    "DRL-004": "Мотобур 71.png",
+    "CUT-002": "Бетонорез кольцевой.jpg",
+    "CUT-003": "Резчик швов слипстоун.jpg",
+    "CON-001": "Машина затирочная (вертолёт) TSS DMR1000L.jpg",
+    "CON-002": "Бетономешалка.jpg",
+    "CON-003": "Портативный вибратор Zitrek.jpg",
+    "CON-004": "Вибратор Sturm.jpg",
+    "CON-005": "Бензиновая виброрека.jpg",
+    "CMP-006": "Виброплита риверсивная.jpg",
+    "GRD-001": "Газонокосилка Chempion.jpg",
+    "GRD-007": "Скарификатор бензиновый Champion GSC4840.jpg",
+    "GRD-008": "Скарификатор электрический Sturm SE1738.jpg",
+    "GRD-009": "Воздуходув-пылесос бензиновый PATRIOT BG 225.jpg",
+    "GRD-010": "Садовый измельчитель Jonco 5000225.jpg",
+    "GRD-011": "Садовый измельчитель Дровосек МР300.jpg",
+    "HGT-001": "Вышка тура 2.7.jpg",
+    "HGT-002": "Вышка-Тура 5.2.jpg",
+    "PMP-001": "Дренажный насос Вихрь ДН-1100Н.jpg",
+    "PMP-002": "Мотопомпа FUBAG PG 950T для грязной воды.jpg",
+    "ELT-003": "Перфоратор Вихрь П-1400к SDS-Plus.jpg",
+    "ELT-015": "Рубанок электрический Пульсар РЭ 110-1300.jpg",
+    "ELT-016": "Лобзик электрический (ручной).jpg",
+    "ELT-017": "Дрель-шуруповёрт ИНТЕРСКОЛ .jpg",
+    "ELT-018": "Гайковёрт аккумуляторный 1800 Нм Makita.jpg",
+    "ELT-019": "Гвоздезабивной пистолет TOUA GSN50E аккум..jpg",
+    "ELT-020": "Пневматический нейлер Denzel PN2190 50–90мм.jpg",
+    "ELT-023": "Паркетошлифовальная машина МИСОМ СО-206.1.jpg",
+    "ELT-025": "Плиткорез ручной Diam Extra Line twin-850L.jpg",
+    "ELT-028": "Аппарат для сварки ПП труб Ресанта АСПТ-1000.jpg",
+    "ELT-029": "Опрессовщик МЕГЕОН 98025.jpg",
+    "ELT-030": "Рейсмусовый станок ЗУБР РС-305 305мм 2000Вт.jpeg",
+    "ELT-031": "Ручной станок для гибки арматуры Afacan 12PT.jpg",
+    "WLD-001": "Сварочный полуавтомат Aurora PRO OVERMAN 200.jpg",
+    "WLD-002": "Сварочный аппарат Foxweld VARTEG 230.jpg",
+    "OTH-009": "Рохля гидравлическая 2 тонны.jpg",
+    "OTH-013": "Моющий пылесос Arnica Vira ET12200 ).jpg",
+    "OTH-014": "Промышленный пылесос Daewoo DAVC 2516S 25л.jpg",
+    "OTH-015": "Промышленный пылесос Metabo ASA 25 L PC.jpg",
+    "OTH-016": "Домкрат автомобильный ЗУБР.jpg",
 }
-
-
-def get_all_files():
-    files = []
-    offset = 0
-    limit = 100
-    while True:
-        resp = requests.get(
-            YANDEX_LIST_API,
-            params={"public_key": PUBLIC_KEY, "limit": limit, "offset": offset, "sort": "name"},
-            timeout=15
-        )
-        data = resp.json()
-        items = data.get("_embedded", {}).get("items", [])
-        for item in items:
-            if item.get("type") == "file":
-                files.append(item["name"])
-        total = data.get("_embedded", {}).get("total", 0)
-        offset += limit
-        if offset >= total:
-            break
-    return files
-
-
-def find_match(filename: str, keyword: str) -> bool:
-    fname = filename.lower().replace("-", " ").replace("_", " ").replace(".", " ")
-    kw = keyword.lower().replace("-", " ").replace("_", " ").replace(".", " ")
-    return kw in fname
 
 
 def download_and_upload(filename: str, s3_key: str, s3_client) -> str:
@@ -169,16 +87,7 @@ def download_and_upload(filename: str, s3_key: str, s3_client) -> str:
 
 def handler(event: dict, context) -> dict:
     if event.get("httpMethod") == "OPTIONS":
-        return {
-            "statusCode": 200,
-            "headers": {
-                "Access-Control-Allow-Origin": "*",
-                "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
-                "Access-Control-Allow-Headers": "Content-Type",
-                "Access-Control-Max-Age": "86400",
-            },
-            "body": "",
-        }
+        return {"statusCode": 200, "headers": {"Access-Control-Allow-Origin": "*"}, "body": ""}
 
     s3 = boto3.client(
         "s3",
@@ -188,41 +97,20 @@ def handler(event: dict, context) -> dict:
         config=Config(signature_version="s3v4"),
     )
 
-    all_files = get_all_files()
-
     results = {}
-    matched = {}
     errors = {}
 
-    for art, keyword in CATALOG.items():
-        found = None
-        for fname in all_files:
-            if find_match(fname, keyword):
-                found = fname
-                break
-
-        if not found:
-            errors[art] = f"No file matching '{keyword}'"
-            continue
-
-        ext = found.rsplit(".", 1)[-1].lower()
+    for art, filename in MAPPING.items():
+        ext = filename.rsplit(".", 1)[-1].lower()
         s3_key = f"catalog2/{art}.{ext}"
-
         try:
-            cdn_url = download_and_upload(found, s3_key, s3)
+            cdn_url = download_and_upload(filename, s3_key, s3)
             results[art] = cdn_url
-            matched[art] = found
         except Exception as e:
-            errors[art] = str(e)
+            errors[art] = f"{filename}: {str(e)}"
 
     return {
         "statusCode": 200,
         "headers": {"Access-Control-Allow-Origin": "*"},
-        "body": json.dumps({
-            "success": True,
-            "uploaded": len(results),
-            "results": results,
-            "matched": matched,
-            "errors": errors,
-        }, ensure_ascii=False),
+        "body": json.dumps({"success": True, "uploaded": len(results), "results": results, "errors": errors}, ensure_ascii=False),
     }
