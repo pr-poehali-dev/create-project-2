@@ -67,7 +67,7 @@ const CATALOG = [
     name: "Установка Алмазная Diam 400",
     category: "drilling", price: "2 500", unit: "сутки", badge: "Новинка", icon: "Drill",
     specs: ["6000 Вт", "Ø коронки до 400 мм", "Изм. угол наклона"],
-    images: ["https://cdn.poehali.dev/projects/a75d3d4b-fdc5-4860-b617-00ca6b3feb56/bucket/catalog2/DRL-002.jpg"],
+    images: ["https://cdn.poehali.dev/projects/a75d3d4b-fdc5-4860-b617-00ca6b3feb56/bucket/e0fc1b59-3d94-4125-855d-1a6f8873979b.jpg"],
   },
   {
     id: 6, art: "CUT-001",
