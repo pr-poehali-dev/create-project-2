@@ -104,7 +104,7 @@ const CATALOG = [
     name: "Бетономешалка Electrolite БМ-165 E",
     category: "concrete", price: "1 000", unit: "сутки", badge: null, icon: "RefreshCw",
     specs: ["800 Вт", "165 л / 123 л раствора", "Чугунный венец", "Вес 52 кг"],
-    images: ["https://cdn.poehali.dev/projects/a75d3d4b-fdc5-4860-b617-00ca6b3feb56/bucket/catalog2/CON-002.jpg"],
+    images: ["https://cdn.poehali.dev/projects/a75d3d4b-fdc5-4860-b617-00ca6b3feb56/bucket/652dbd18-3acd-4e11-8c9d-f81f5efe6e72.jpg"],
   },
   {
     id: 10, art: "CMP-001",
