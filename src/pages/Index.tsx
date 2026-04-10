@@ -90,7 +90,7 @@ const CATALOG = [
     name: "Бетонорез кольцевой BHJ500 электрический",
     category: "concrete", price: "2 500", unit: "сутки", badge: null, icon: "Scissors",
     specs: ["Ø 520 мм", "Глубина реза 40 см", "Железобетон/мрамор"],
-    images: ["https://cdn.poehali.dev/projects/a75d3d4b-fdc5-4860-b617-00ca6b3feb56/bucket/catalog2/CUT-002.jpg"],
+    images: ["https://cdn.poehali.dev/projects/a75d3d4b-fdc5-4860-b617-00ca6b3feb56/bucket/22f6d349-0d35-4ce3-9cb6-bb07e6cf1db5.jpg"],
   },
   {
     id: 8, art: "CON-001",
