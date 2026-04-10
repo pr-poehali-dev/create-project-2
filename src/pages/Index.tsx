@@ -229,7 +229,7 @@ const REVIEWS = [
 
 const CONDITIONS = [
   { icon: "FileText", title: "Договор аренды", text: "Оформляем официальный договор. Юридические лица и ИП работают по безналу, физические лица — наличными или картой." },
-  { icon: "Shield", title: "Залог", text: "Залог составляет 50–100% от стоимости оборудования. Возвращается в полном объёме при сдаче техники в надлежащем состоянии." },
+  { icon: "Shield", title: "Залог", text: "📌Работаем БЕЗ ЗАЛОГА для жителей Нижнего Новгорода, для иногородних клиентов залог составляет 50–100% от стоимости оборудования. Возвращается в полном объёме при сдаче техники в надлежащем состоянии." },
   { icon: "Clock", title: "Срок аренды", text: "Минимальный срок — 1 сутки. От 7 дней — скидка 10%, от 30 дней — скидка 20%. Долгосрочные условия обсуждаются индивидуально." },
   { icon: "AlertCircle", title: "Ответственность", text: "Арендатор несёт ответственность за сохранность оборудования. При повреждении — возмещение по рыночной стоимости ремонта." },
   { icon: "CheckCircle", title: "Документы", text: "Для физлиц: паспорт. Для юрлиц и ИП: реквизиты + доверенность. Ничего лишнего — оформляем быстро." },
@@ -237,8 +237,8 @@ const CONDITIONS = [
 ];
 
 const DELIVERY_ZONES = [
-  { zone: "Зона 1", distance: "до 10 км", price: "500 ₽" },
-  { zone: "Зона 2", distance: "10–30 км", price: "1 200 ₽" },
+  { zone: "Зона 1", distance: "до 10 км", price: "1 500 ₽" },
+  { zone: "Зона 2", distance: "10–30 км", price: "2 000 ₽" },
   { zone: "Зона 3", distance: "30–60 км", price: "2 500 ₽" },
   { zone: "Зона 4", distance: "60+ км", price: "По договору" },
 ];
@@ -362,16 +362,16 @@ const Index = () => {
             </div>
 
             {/* Headline */}
-            <h1 className="font-oswald text-5xl md:text-6xl lg:text-7xl text-white leading-[1.05] mb-6 tracking-wide" style={{textShadow: '2px 3px 12px rgba(0,0,0,0.8), 0 2px 6px rgba(0,0,0,0.9)'}}>
+            <h1 className="font-oswald text-5xl md:text-6xl lg:text-7xl text-white leading-[1.05] mb-6 tracking-wide">
               КОМПАНИЯ<br />
-              <span className="font-russo text-[#8B1A2F]" style={{textShadow: '2px 3px 14px rgba(0,0,0,0.95), 0 0 30px rgba(139,26,47,0.5)'}}>РЕНТМАСТЕР</span>
+              <span className="font-russo text-[#8B1A2F]" style={{filter: 'drop-shadow(0 0 12px rgba(139,26,47,0.8)) drop-shadow(0 0 24px rgba(139,26,47,0.5))'}}>РЕНТМАСТЕР</span>
             </h1>
 
             {/* Subtext */}
             <p className="text-gray-300 text-lg md:text-xl leading-relaxed mb-3 max-w-2xl" style={{textShadow: '1px 2px 8px rgba(0,0,0,0.9), 0 1px 4px rgba(0,0,0,0.95)'}}>
               Надёжный партнёр в сфере аренды строительного оборудования и инструмента.
             </p>
-            <p className="text-gray-400 text-base leading-relaxed mb-3 max-w-xl">
+            <p className="text-gray-200 text-base leading-relaxed mb-3 max-w-xl" style={{textShadow: '1px 1px 6px rgba(0,0,0,0.9)'}}>
               Широкий выбор инструмента для всех видов работ — от строительства до садоводства.
             </p>
             <p className="text-[#F0B040] font-oswald text-xl tracking-wide mb-10">
