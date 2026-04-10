@@ -1,0 +1,12 @@
+{
+  "tests": [
+    {
+      "name": "Upload photos from Yandex Disk",
+      "method": "GET",
+      "path": "/",
+      "expectedStatus": 200,
+      "expectedBody": {"success": true},
+      "bodyMatcher": "partial"
+    }
+  ]
+}
