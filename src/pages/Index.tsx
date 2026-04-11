@@ -850,35 +850,6 @@ const Index = () => {
               ))}
             </div>
 
-            {/* Form */}
-            <div className="bg-white/5 border border-white/10 rounded-2xl p-7">
-              <h3 className="font-oswald text-xl text-white tracking-widest mb-6">
-                ОСТАВИТЬ ЗАЯВКУ
-              </h3>
-              <div className="space-y-3">
-                <input
-                  type="text"
-                  placeholder="Ваше имя"
-                  className="w-full px-4 py-3.5 bg-white/8 border border-white/15 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-[#8B1A2F] transition-colors text-sm"
-                />
-                <input
-                  type="tel"
-                  placeholder="Телефон"
-                  className="w-full px-4 py-3.5 bg-white/8 border border-white/15 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-[#8B1A2F] transition-colors text-sm"
-                />
-                <textarea
-                  placeholder="Какое оборудование вас интересует?"
-                  rows={4}
-                  className="w-full px-4 py-3.5 bg-white/8 border border-white/15 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-[#8B1A2F] transition-colors text-sm resize-none"
-                />
-                <button className="w-full bg-[#8B1A2F] hover:bg-[#6e1525] text-white font-oswald tracking-widest py-3.5 rounded-xl transition-all hover:shadow-lg hover:shadow-[#8B1A2F]/30 text-base">
-                  ОТПРАВИТЬ ЗАЯВКУ
-                </button>
-                <p className="text-gray-600 text-xs text-center">
-                  Перезвоним в течение 15 минут в рабочее время
-                </p>
-              </div>
-            </div>
           </div>
         </div>
       </section>
