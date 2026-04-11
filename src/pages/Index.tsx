@@ -11,6 +11,7 @@ const HERO_IMG = "https://cdn.poehali.dev/projects/a75d3d4b-fdc5-4860-b617-00ca6
 
 const NAV_LINKS = [
   { id: "home", label: "Главная" },
+  { id: "repair", label: "Ремонт" },
   { id: "catalog", label: "Каталог" },
   { id: "conditions", label: "Условия аренды" },
   { id: "delivery", label: "Доставка" },
@@ -414,6 +415,64 @@ const Index = () => {
                 <div className="text-white/65 text-xs mt-0.5">{s.label}</div>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* REPAIR */}
+      <section id="repair" className="relative py-24 overflow-hidden">
+        {/* Background image */}
+        <div
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: "url('https://cdn.poehali.dev/projects/a75d3d4b-fdc5-4860-b617-00ca6b3feb56/files/6ef1a596-88d8-4e92-9c2d-3498a679c17c.jpg')" }}
+        />
+        <div className="absolute inset-0 bg-[#1A1C20]/80" />
+
+        <div className="relative z-10 max-w-7xl mx-auto px-4">
+          {/* Header */}
+          <div className="mb-10">
+            <div className="flex items-center gap-3 mb-2">
+              <div className="w-1 h-9 bg-[#8B1A2F] rounded-full" />
+              <h2 className="font-oswald text-4xl text-white tracking-wide">РЕМОНТ ИНСТРУМЕНТА</h2>
+            </div>
+            <p className="text-gray-300 text-lg max-w-3xl mt-4 leading-relaxed">
+              Наша компания производит ремонт и обслуживание бензо и электроинструмента.<br />
+              Быстрые сроки ремонта, опыт механика более 15 лет, заказ запчастей в день приёма инструмента, гарантия на проделанную работу!
+            </p>
+          </div>
+
+          {/* Advantages */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
+            {[
+              { icon: "Clock", text: "Быстрые сроки ремонта" },
+              { icon: "Wrench", text: "Опыт механика 15+ лет" },
+              { icon: "Package", text: "Запчасти в день приёма" },
+              { icon: "Shield", text: "Гарантия на работу" },
+            ].map((item) => (
+              <div key={item.text} className="bg-white/10 border border-white/15 rounded-xl p-4 flex flex-col items-center text-center gap-3">
+                <Icon name={item.icon} size={28} className="text-[#D14060]" />
+                <span className="text-white text-sm font-medium">{item.text}</span>
+              </div>
+            ))}
+          </div>
+
+          {/* Prices */}
+          <div className="bg-white/10 border border-white/15 rounded-2xl p-8 max-w-2xl">
+            <h3 className="font-oswald text-2xl text-white tracking-wide mb-6">ЦЕНЫ НА ДИАГНОСТИКУ</h3>
+            <div className="space-y-3">
+              {[
+                { label: "Электроинструмент", price: "500 – 1 000 ₽" },
+                { label: "Двухтактные моторы", price: "800 ₽" },
+                { label: "Четырёхтактные моторы", price: "1 000 ₽" },
+                { label: "Газонокосилки электрические", price: "1 000 ₽" },
+                { label: "Заточка цепей", price: "300 ₽" },
+              ].map((row) => (
+                <div key={row.label} className="flex items-center justify-between py-3 border-b border-white/10 last:border-0">
+                  <span className="text-gray-300 text-base">{row.label}</span>
+                  <span className="text-[#F0B040] font-oswald text-lg font-semibold whitespace-nowrap ml-4">{row.price}</span>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
