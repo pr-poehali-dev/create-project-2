@@ -856,7 +856,7 @@ const Index = () => {
             <div className="flex flex-col gap-5">
               <div className="rounded-2xl overflow-hidden flex-1 min-h-[320px] border border-white/10">
                 <iframe
-                  src="https://yandex.ru/map-widget/v1/?ll=44.002271%2C56.283249&z=16&pt=44.002271%2C56.283249"
+                  src="https://yandex.ru/map-widget/v1/?ll=43.954%2C56.2395&z=17&pt=43.954%2C56.2395,pm2rdm~&text=%D0%9D%D0%B8%D0%B6%D0%BD%D0%B8%D0%B9%20%D0%9D%D0%BE%D0%B2%D0%B3%D0%BE%D1%80%D0%BE%D0%B4%2C%20%D1%83%D0%BB.%20%D0%9B%D0%B0%D1%80%D0%B8%D0%BD%D0%B0%2C%2027%D0%BA8"
                   width="100%"
                   height="100%"
                   style={{ minHeight: 320, border: 0 }}
