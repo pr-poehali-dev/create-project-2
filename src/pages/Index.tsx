@@ -852,6 +852,30 @@ const Index = () => {
               ))}
             </div>
 
+            {/* Map */}
+            <div className="flex flex-col gap-5">
+              <div className="rounded-2xl overflow-hidden flex-1 min-h-[320px] border border-white/10">
+                <iframe
+                  src="https://yandex.ru/map-widget/v1/?ll=44.002271%2C56.283249&z=16&pt=44.002271%2C56.283249"
+                  width="100%"
+                  height="100%"
+                  style={{ minHeight: 320, border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  title="Карта РентМастер"
+                />
+              </div>
+              <div className="bg-white/5 border border-white/10 rounded-2xl p-5 flex items-center gap-4">
+                <div className="w-10 h-10 bg-[#8B1A2F] rounded-xl flex items-center justify-center flex-shrink-0">
+                  <Icon name="Navigation" size={18} className="text-white" />
+                </div>
+                <div>
+                  <p className="text-white font-medium text-sm">г. Нижний Новгород, ул. Ларина 27к8</p>
+                  <p className="text-gray-400 text-xs mt-0.5">Самовывоз бесплатно — просто приезжайте</p>
+                </div>
+              </div>
+            </div>
+
           </div>
         </div>
       </section>
