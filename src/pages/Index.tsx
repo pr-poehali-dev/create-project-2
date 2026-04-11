@@ -446,7 +446,7 @@ const Index = () => {
             {[
               { icon: "Clock", text: "Быстрые сроки ремонта" },
               { icon: "Wrench", text: "Опыт механика 15+ лет" },
-              { icon: "Package", text: "Запчасти в день приёма" },
+              { icon: "Package", text: "Заказ запчастей в день приёма" },
               { icon: "Shield", text: "Гарантия на работу" },
             ].map((item) => (
               <div key={item.text} className="bg-white/10 border border-white/15 rounded-xl p-4 flex flex-col items-center text-center gap-3">
