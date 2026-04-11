@@ -705,11 +705,13 @@ const Index = () => {
       </section>
 
       {/* DELIVERY */}
-      <section id="delivery" className="py-20 bg-[#EAEAEA]">
-        <div className="max-w-7xl mx-auto px-4">
+      <section id="delivery" className="relative py-20 overflow-hidden">
+        <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: "url('https://cdn.poehali.dev/projects/a75d3d4b-fdc5-4860-b617-00ca6b3feb56/files/4e4b2dd5-ef6e-48d6-ac53-a2bfd4864655.jpg')" }} />
+        <div className="absolute inset-0 bg-[#1A1C20]/75" />
+        <div className="relative z-10 max-w-7xl mx-auto px-4">
           <div className="flex items-center gap-3 mb-10">
             <div className="w-1 h-9 bg-[#8B1A2F] rounded-full" />
-            <h2 className="font-oswald text-4xl text-[#1A1C20] tracking-wide">ДОСТАВКА</h2>
+            <h2 className="font-oswald text-4xl text-white tracking-wide">ДОСТАВКА</h2>
           </div>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
             <div className="space-y-4">
@@ -721,21 +723,21 @@ const Index = () => {
               ].map((d) => (
                 <div
                   key={d.title}
-                  className="flex gap-4 bg-white p-5 rounded-2xl border border-gray-100 hover:border-[#8B1A2F]/20 transition-all"
+                  className="flex gap-4 bg-white/10 border border-white/15 p-5 rounded-2xl hover:border-[#8B1A2F]/50 transition-all"
                 >
-                  <div className="w-11 h-11 bg-[#8B1A2F]/10 rounded-xl flex items-center justify-center flex-shrink-0">
-                    <Icon name={d.icon as string} size={20} className="text-[#8B1A2F]" fallback="Info" />
+                  <div className="w-11 h-11 bg-[#8B1A2F]/30 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <Icon name={d.icon as string} size={20} className="text-[#D14060]" fallback="Info" />
                   </div>
                   <div>
-                    <p className="font-semibold text-[#1A1C20] text-sm">{d.title}</p>
-                    <p className="text-gray-500 text-xs mt-1 leading-relaxed">{d.text}</p>
+                    <p className="font-semibold text-white text-sm">{d.title}</p>
+                    <p className="text-gray-300 text-xs mt-1 leading-relaxed">{d.text}</p>
                   </div>
                 </div>
               ))}
             </div>
 
             <div>
-              <h3 className="font-oswald text-2xl text-[#1A1C20] mb-5 tracking-wide">
+              <h3 className="font-oswald text-2xl text-white mb-5 tracking-wide">
                 ТАРИФЫ ДОСТАВКИ
               </h3>
               <div className="bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm">
