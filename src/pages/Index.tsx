@@ -118,7 +118,7 @@ const CATALOG = [
   {
     id: 12, art: "CMP-003",
     name: "Виброплита TOR-C 120кг",
-    category: "compaction", price: "по запросу", unit: "сутки", badge: "Новинка", icon: "ArrowDown",
+    category: "compaction", price: "2 000", unit: "сутки", badge: "Новинка", icon: "ArrowDown",
     specs: ["120 кг", "6.5 л.с.", "Макс. глубина уплотнения 300 мм"],
     images: ["https://cdn.poehali.dev/projects/a75d3d4b-fdc5-4860-b617-00ca6b3feb56/bucket/ece9314c-22dd-4704-b586-ef01e9ac7d94.jpg"],
   },
